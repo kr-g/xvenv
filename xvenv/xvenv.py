@@ -291,8 +291,8 @@ def main_func():
     parser = argparse.ArgumentParser(
         prog="xvenv",
         usage=f"{python_} -m %(prog)s [options]",
-        description="venv tool",
-        epilog="for more information refer to https://github.com/kr-g/xvenv",
+        description="venv mangement and builder tool",
+        epilog="for more information refer to https://github.com/kr-g/%(prog)s",
     )
     parser.add_argument(
         "--version", "-v", action="version", version=f"%(prog)s {VERSION}"
