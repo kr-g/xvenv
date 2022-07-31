@@ -1,5 +1,5 @@
 """
-(c) 2022 K. Goger 
+(c) 2022 K. Goger - https://github.com/kr-g/
 
 xvenv automates venv handling, as well as
 starting from command line with activating
