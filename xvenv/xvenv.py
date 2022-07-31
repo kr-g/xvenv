@@ -89,15 +89,27 @@ keep_temp = False
 cwd = "."
 
 
+def dprint(*args_):
+    debug and print(*args_)
+
+
 def proc(args_):
-    rc = subprocess.run(args_, capture_output=True)
-    if rc:
-        if rc.returncode == 0:
-            rc.returncode = None
-    return rc
+    dprint("proc", args_)
+    proc = subprocess.Popen(args_, stdout=subprocess.PIPE, stderr=subprocess.STDOUT)
+    dprint("proc", proc.returncode)
+    if proc:
+        while True:
+            outs = proc.stdout.readline().decode()
+            if len(outs) == 0:
+                break
+            verbose and print(outs, end="")
+
+    if proc.returncode:
+        return proc.returncode
 
 
 def bashwrap(cmd):
+    dprint("bashwrap")
     wrap = "#!/bin/bash -il \n"
     wrap += f"cd {cwd}\n"
     wrap += f". {VENV}/bin/activate \n"
@@ -106,13 +118,17 @@ def bashwrap(cmd):
 
 
 def extrun(cmd):
+    dprint("extrun", cmd)
 
     # fnam = os.path.join(tempfile.gettempdir(), TEMPRUN)
     fd, fnam = tempfile.mkstemp(prefix="xvenv-", suffix=".sh")
     os.close(fd)
 
+    dprint("tempfile", fnam)
+
     with open(fnam, "w") as f:
         f.write(cmd)
+
     rc = proc(
         [
             "bash",
@@ -129,12 +145,14 @@ def extrun(cmd):
 
 
 def no_rest_or_die(args_):
+    dprint("no_rest_or_die")
     if len(args_.rest) > 0:
         print("unknown opts", *args_.rest)
         sys.exit(1)
 
 
 def setup(args_):
+    dprint("setup")
     no_rest_or_die(args_)
     clear = "--clear" if args_.clear else ""
     copy = "--copies" if args_.copy else "--symlink"
@@ -145,6 +163,7 @@ def setup(args_):
 
 
 def pip(args_):
+    dprint("pip")
     no_rest_or_die(args_)
     cmd = bashwrap(f"{args_.python} -m ensurepip -U")
     rc = extrun(cmd)
@@ -152,6 +171,7 @@ def pip(args_):
 
 
 def tools(args_):
+    dprint("tools")
     no_rest_or_die(args_)
     tools = " ".join(args_.tool)
     update = "-U" if args.update_deps else ""
@@ -161,28 +181,41 @@ def tools(args_):
 
 
 def build(args_):
+    dprint("build")
     no_rest_or_die(args_)
+    print("building...")
     cmd = bashwrap(f"{args_.python} -m setup sdist build bdist_wheel")
     rc = extrun(cmd)
     return rc
 
 
 def install(args_):
+    dprint("install")
     no_rest_or_die(args_)
+    print("installing...")
     cmd = bashwrap(f"{args_.python} -m pip install -e .")
     rc = extrun(cmd)
     return rc
 
 
+def binst(args_):
+    dprint("binst")
+    or_die_with_mesg(build(args_), "build failed")
+    or_die_with_mesg(install(args_), "install failed")
+
+
 def or_die_with_mesg(rc, text=None):
-    if rc.returncode:
+    dprint("or_die_with_mesg")
+    if rc:
         print(text if text else "ERROR", file=sys.stderr)
         debug and print(rc, file=sys.stderr)
         sys.exit(1)
 
 
 def make(args_):
+    dprint("make")
     no_rest_or_die(args_)
+    print("making...")
     or_die_with_mesg(setup(args_), "setup failed")
     or_die_with_mesg(pip(args_), "pip failed")
     or_die_with_mesg(tools(args_), "tools failed")
@@ -194,26 +227,25 @@ def make(args_):
 
 
 def run(args_):
+    dprint("run")
     rest = shlex.join(args_.rest)
     cmd = bashwrap(f"{rest}")
     rc = extrun(cmd)
-    print(rc.stdout.decode())
-    print(rc.stderr.decode(), file=sys.stderr)
     return rc
 
 
 def test(args_):
+    dprint("test")
     no_rest_or_die(args_)
     cmd = bashwrap(
         f"{args_.python} -c 'import os; import pip; print(pip.__file__);[ print(k,chr(61),v) for k,v in os.environ.items() ]'"
     )
     rc = extrun(cmd)
-    for line in rc.stdout.decode().splitlines():
-        print(line)
     return rc
 
 
 def clone(args_):
+    dprint("clone")
     no_rest_or_die(args_)
     src = os.path.abspath(__file__)
     fnam = os.path.basename(__file__)
@@ -230,6 +262,7 @@ def report(*args):
 
 
 def drop(args_):
+    dprint("drop")
     no_rest_or_die(args_)
 
     cwd = os.getcwd()
@@ -346,8 +379,11 @@ def main_func(mkcopy=True):
     )
     build_parser.set_defaults(func=build)
 
-    install_parser = subparsers.add_parser("install", help="pip -e . in venv")
+    install_parser = subparsers.add_parser("install", help="pip install -e . in venv")
     install_parser.set_defaults(func=install)
+
+    binst_parser = subparsers.add_parser("binst", help="build and install")
+    binst_parser.set_defaults(func=binst)
 
     make_parser = subparsers.add_parser(
         "make", help="sets up a venv and installs everything"
@@ -420,7 +456,7 @@ def main_func(mkcopy=True):
 
     if "func" in args:
         rc = args.func(args)
-        debug and print(rc)
+        debug and print("result:", rc)
         return rc
     else:
         print("what? use --help")
