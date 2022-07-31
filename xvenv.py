@@ -20,6 +20,11 @@ or call make for all steps above:
 
     python3 xvenv.py make
 
+or
+
+    python3 xvenv.py make --quick
+        -> only steps setup, pip 
+
 
 call a program within the venv
 
@@ -139,7 +144,8 @@ def pip(args_):
 def tools(args_):
     no_rest_or_die(args_)
     tools = " ".join(args_.tool)
-    cmd = bashwrap(f"{args_.python} -m pip install {tools} -U")
+    update = "-U" if args.update_deps else ""
+    cmd = bashwrap(f"{args_.python} -m pip install {tools} {update}")
     rc = extrun(cmd)
     return rc
 
@@ -169,6 +175,8 @@ def make(args_):
     no_rest_or_die(args_)
     or_die_with_mesg(setup(args_), "setup failed")
     or_die_with_mesg(pip(args_), "pip failed")
+    if args.quick:
+        return
     or_die_with_mesg(tools(args_), "tools failed")
     or_die_with_mesg(test(args_), "test failed")
     or_die_with_mesg(build(args_), "build failed")
@@ -282,6 +290,13 @@ def main_func(mkcopy=True):
     tools_parser = subparsers.add_parser("tools", help="tools installation")
     tools_parser.set_defaults(func=tools)
     tools_parser.add_argument(
+        "--update-deps",
+        "-u",
+        action="store_true",
+        default=False,
+        help="update deps (default: %(default)s)",
+    )
+    tools_parser.add_argument(
         "tool",
         nargs="*",
         action="store",
@@ -304,6 +319,13 @@ def main_func(mkcopy=True):
     make_parser.set_defaults(func=make)
 
     make_parser.add_argument(
+        "--quick",
+        "-q",
+        action="store_true",
+        default=False,
+        help="quick install without build and install stel (default: %(default)s)",
+    )
+    make_parser.add_argument(
         "--clear",
         "-c",
         action="store_true",
@@ -316,6 +338,13 @@ def main_func(mkcopy=True):
         action="store_true",
         default=False,
         help="use copy instead of symlink (default: %(default)s)",
+    )
+    make_parser.add_argument(
+        "--update-deps",
+        "-u",
+        action="store_true",
+        default=False,
+        help="update deps (default: %(default)s)",
     )
     make_parser.add_argument(
         "tool",
