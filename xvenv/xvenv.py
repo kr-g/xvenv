@@ -225,6 +225,32 @@ def clone(args_):
     return rc
 
 
+def report(*args):
+    print("ERROR", args, file=sys.stderr)
+
+
+def drop(args_):
+    no_rest_or_die(args_)
+
+    cwd = os.getcwd()
+    fnam = os.path.abspath(os.path.join(cwd, VENV))
+    if os.path.exists(fnam):
+        if os.path.isdir(fnam):
+            rc = input(f"really drop {fnam} ? (y)es/(N)o : ")
+            rc = rc.strip().lower()
+            if rc in ["y", "yes"]:
+                print("removing...")
+                shutil.rmtree(fnam, ignore_errors=False, onerror=report)
+            else:
+                print("aborted")
+        else:
+            print("not an folder", fnam, file=sys.stderr)
+            return 1
+    else:
+        print("not found folder", fnam, file=sys.stderr)
+        return 1
+
+
 def main_func(mkcopy=True):
 
     global args, debug, verbose, python_, tools_, keep_temp, cwd
@@ -375,6 +401,11 @@ def main_func(mkcopy=True):
 
     clone_parser = subparsers.add_parser("clone", help="clone xvenv.py to cwd folder")
     clone_parser.set_defaults(func=clone)
+
+    drop_parser = subparsers.add_parser(
+        "drop", help="removes the '.venv' folder, and all contents"
+    )
+    drop_parser.set_defaults(func=drop)
 
     args, rest = parser.parse_known_args()
     args.rest = rest
