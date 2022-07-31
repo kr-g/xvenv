@@ -93,5 +93,5 @@ alpha, the interface/ workflow might change without prior notice
     
 # license
 
-[`LICENSE`](https://github.com/kr-g/smog/blob/xvenv/LICENSE.md)
+[`LICENSE`](./blob/main/LICENSE.md)
 
