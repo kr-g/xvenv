@@ -65,15 +65,15 @@ run `xvenv pip -h` for help
 
 run `xvenv tools -h` for help
 
-    usage: python3 -m xvenv [options] tools [-h] [--update-deps] [tool [tool ...]]
-    
-    positional arguments:
-      tool               tools to install (default: ['setuptools', 'twine',
-                         'wheel', 'black', 'flake8'])
+    usage: python3 -m xvenv [options] tools [-h] [--update-deps]
+                                            [-tool [TOOL [TOOL ...]]]
     
     optional arguments:
-      -h, --help         show this help message and exit
-      --update-deps, -u  update deps (default: False)
+      -h, --help            show this help message and exit
+      --update-deps, -u     update deps (default: False)
+      -tool [TOOL [TOOL ...]]
+                            tool to install (default: ['setuptools', 'twine',
+                            'wheel', 'black', 'flake8'])
 
 
 ## xvenv build
@@ -112,19 +112,18 @@ run `xvenv make -h` for help
 
     usage: python3 -m xvenv [options] make [-h] [--quick] [--clear] [--copy]
                                            [--update-deps]
-                                           [tool [tool ...]]
-    
-    positional arguments:
-      tool               tools to install (default: ['setuptools', 'twine',
-                         'wheel', 'black', 'flake8'])
+                                           [-tool [TOOL [TOOL ...]]]
     
     optional arguments:
-      -h, --help         show this help message and exit
-      --quick, -q        quick install without build and install steps (default:
-                         False)
-      --clear, -c        clear before setup (default: False)
-      --copy, -cp        use copy instead of symlink (default: False)
-      --update-deps, -u  update deps (default: False)
+      -h, --help            show this help message and exit
+      --quick, -q           quick install without build and install steps
+                            (default: False)
+      --clear, -c           clear before setup (default: False)
+      --copy, -cp           use copy instead of symlink (default: False)
+      --update-deps, -u     update deps (default: False)
+      -tool [TOOL [TOOL ...]]
+                            tool to install (default: ['setuptools', 'twine',
+                            'wheel', 'black', 'flake8'])
 
 
 ## xvenv run

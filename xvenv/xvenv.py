@@ -366,11 +366,11 @@ def main_func(mkcopy=True):
         help="update deps (default: %(default)s)",
     )
     tools_parser.add_argument(
-        "tool",
+        "-tool",
         nargs="*",
         action="store",
         default=tools_,
-        help="tools to install (default: %(default)s)",
+        help="tool to install (default: %(default)s)",
     )
 
     build_parser = subparsers.add_parser(
@@ -379,7 +379,9 @@ def main_func(mkcopy=True):
     )
     build_parser.set_defaults(func=build)
 
-    install_parser = subparsers.add_parser("install", help="pip install editabe in venv")
+    install_parser = subparsers.add_parser(
+        "install", help="pip install editabe in venv"
+    )
     install_parser.set_defaults(func=install)
 
     binst_parser = subparsers.add_parser("binst", help="build and install")
@@ -419,11 +421,11 @@ def main_func(mkcopy=True):
         help="update deps (default: %(default)s)",
     )
     make_parser.add_argument(
-        "tool",
+        "-tool",
         nargs="*",
         action="store",
         default=tools_,
-        help="tools to install (default: %(default)s)",
+        help="tool to install (default: %(default)s)",
     )
 
     run_parser = subparsers.add_parser("run", help="run a command")
