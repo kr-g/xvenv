@@ -83,6 +83,20 @@ what will call `setup sdist build bdist_wheel` internally,
 followed by pip install -e .
 
 
+# what's new ?
+
+check
+[`CHANGELOG`](./CHANGELOG.md)
+for latest ongoing, or upcoming news.
+
+
+# limitations
+
+check 
+[`BACKLOG`](./BACKLOG.md)
+for open development tasks and limitations.
+
+
 # platform
 
 as of now just linux
