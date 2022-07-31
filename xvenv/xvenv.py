@@ -343,7 +343,7 @@ def main_func(mkcopy=True):
         "-c",
         action="store_true",
         default=False,
-        help="clear before install (default: %(default)s)",
+        help="clear before setup (default: %(default)s)",
     )
     setup_parser.add_argument(
         "--copy",
@@ -379,7 +379,7 @@ def main_func(mkcopy=True):
     )
     build_parser.set_defaults(func=build)
 
-    install_parser = subparsers.add_parser("install", help="pip install -e . in venv")
+    install_parser = subparsers.add_parser("install", help="pip install editabe in venv")
     install_parser.set_defaults(func=install)
 
     binst_parser = subparsers.add_parser("binst", help="build and install")
@@ -395,14 +395,14 @@ def main_func(mkcopy=True):
         "-q",
         action="store_true",
         default=False,
-        help="quick install without build and install stel (default: %(default)s)",
+        help="quick install without build and install steps (default: %(default)s)",
     )
     make_parser.add_argument(
         "--clear",
         "-c",
         action="store_true",
         default=False,
-        help="clear before install (default: %(default)s)",
+        help="clear before setup (default: %(default)s)",
     )
     make_parser.add_argument(
         "--copy",

@@ -18,7 +18,7 @@ run `xvenv -h` for help
         tools               tools installation
         build               build with setuptools. like calling setup sdist build
                             bdist_wheel
-        install             pip install -e . in venv
+        install             pip install editabe in venv
         binst               build and install
         make                sets up a venv and installs everything
         run                 run a command
@@ -47,7 +47,7 @@ run `xvenv setup -h` for help
     
     optional arguments:
       -h, --help   show this help message and exit
-      --clear, -c  clear before install (default: False)
+      --clear, -c  clear before setup (default: False)
       --copy, -cp  use copy instead of symlink (default: False)
 
 
@@ -120,9 +120,9 @@ run `xvenv make -h` for help
     
     optional arguments:
       -h, --help         show this help message and exit
-      --quick, -q        quick install without build and install stel (default:
+      --quick, -q        quick install without build and install steps (default:
                          False)
-      --clear, -c        clear before install (default: False)
+      --clear, -c        clear before setup (default: False)
       --copy, -cp        use copy instead of symlink (default: False)
       --update-deps, -u  update deps (default: False)
 
