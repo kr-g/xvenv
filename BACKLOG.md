@@ -12,7 +12,7 @@ for latest ongoing, or upcoming news.
 
 # OPEN ISSUES
 
-refer to [issues](./issues)
+refer to [issues](https://github.com/kr-g/xvenv/issues)
 
 
 # LIMITATIONS
