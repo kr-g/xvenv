@@ -57,6 +57,7 @@ python3 /somefolder/xvenv.py -cwd /otherfolder/repo/pymodule run pymodule-cmdlin
 
 import sys
 import os
+import glob
 import argparse
 import subprocess
 import tempfile
@@ -89,8 +90,12 @@ keep_temp = False
 cwd = "."
 
 
-def dprint(*args_):
-    debug and print(*args_)
+def dprint(*args_, **kwargs_):
+    debug and print(*args_, **kwargs_)
+
+
+def vprint(*args_, **kwargs_):
+    verbose and print(*args_, **kwargs_)
 
 
 def proc(args_):
@@ -102,7 +107,7 @@ def proc(args_):
             outs = proc.stdout.readline().decode()
             if len(outs) == 0:
                 break
-            verbose and print(outs, end="")
+            vprint(outs, end="")
 
     if proc.returncode:
         return proc.returncode
@@ -180,10 +185,22 @@ def tools(args_):
     return rc
 
 
+def clean(args_):
+    dprint("clean")
+    for fld in ["build", "dist", "*.egg-info"]:
+        vprint("clean", fld)
+        for fnam in glob.iglob(fld):
+            dprint("clean", fnam)
+            shutil.rmtree(fnam, ignore_errors=False, onerror=report)
+
+
 def build(args_):
     dprint("build")
     no_rest_or_die(args_)
     print("building...")
+    if args_.build_clean:
+        or_die_with_mesg(clean(args_), "build clean failed")
+
     cmd = bashwrap(f"{args_.python} -m setup sdist build bdist_wheel")
     rc = extrun(cmd)
     return rc
@@ -373,11 +390,24 @@ def main_func():
         help="tool to install (default: %(default)s)",
     )
 
+    clean_parser = subparsers.add_parser(
+        "clean",
+        help="clean all build folders",
+    )
+    clean_parser.set_defaults(func=clean)
+
     build_parser = subparsers.add_parser(
         "build",
         help="build with setuptools. like calling setup sdist build bdist_wheel",
     )
     build_parser.set_defaults(func=build)
+    build_parser.add_argument(
+        "--build-clean",
+        "-bclr",
+        action="store_true",
+        default=False,
+        help="clean all build related folders (default: %(default)s)",
+    )
 
     install_parser = subparsers.add_parser(
         "install", help="pip install editabe in venv"
@@ -426,6 +456,13 @@ def main_func():
         action="store",
         default=tools_,
         help="tool to install (default: %(default)s)",
+    )
+    make_parser.add_argument(
+        "--build-clean",
+        "-bclr",
+        action="store_true",
+        default=False,
+        help="clean all build related folders (default: %(default)s)",
     )
 
     run_parser = subparsers.add_parser("run", help="run a command")

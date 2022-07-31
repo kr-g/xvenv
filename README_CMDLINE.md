@@ -11,11 +11,12 @@ run `xvenv -h` for help
     venv mangement and builder tool
     
     positional arguments:
-      {setup,pip,tools,build,install,binst,make,run,test,clone,drop}
+      {setup,pip,tools,clean,build,install,binst,make,run,test,clone,drop}
                             sub-command --help
         setup               setup a venv
         pip                 pip installation
         tools               tools installation
+        clean               clean all build folders
         build               build with setuptools. like calling setup sdist build
                             bdist_wheel
         install             pip install editabe in venv
@@ -76,14 +77,25 @@ run `xvenv tools -h` for help
                             'wheel', 'black', 'flake8'])
 
 
+## xvenv clean
+
+run `xvenv clean -h` for help
+
+    usage: python3 -m xvenv [options] clean [-h]
+    
+    optional arguments:
+      -h, --help  show this help message and exit
+
+
 ## xvenv build
 
 run `xvenv build -h` for help
 
-    usage: python3 -m xvenv [options] build [-h]
+    usage: python3 -m xvenv [options] build [-h] [--build-clean]
     
     optional arguments:
-      -h, --help  show this help message and exit
+      -h, --help            show this help message and exit
+      --build-clean, -bclr  clean all build related folders (default: False)
 
 
 ## xvenv install
@@ -113,6 +125,7 @@ run `xvenv make -h` for help
     usage: python3 -m xvenv [options] make [-h] [--quick] [--clear] [--copy]
                                            [--update-deps]
                                            [-tool [TOOL [TOOL ...]]]
+                                           [--build-clean]
     
     optional arguments:
       -h, --help            show this help message and exit
@@ -124,6 +137,7 @@ run `xvenv make -h` for help
       -tool [TOOL [TOOL ...]]
                             tool to install (default: ['setuptools', 'twine',
                             'wheel', 'black', 'flake8'])
+      --build-clean, -bclr  clean all build related folders (default: False)
 
 
 ## xvenv run

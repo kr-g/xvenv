@@ -10,6 +10,7 @@ for open development tasks and limitations.
 - `drop` sub-cmd for removing a venv
 - more verbose info
 - `binst` sub-cmd
+- `clean` sub-cmd for wiping build related folders
 - 
 
 
