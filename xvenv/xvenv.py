@@ -65,6 +65,16 @@ import shlex
 
 VERSION = "v0.0.0"
 
+try:
+    from const import VERSION
+except:
+    pass
+try:
+    from .const import VERSION
+except:
+    pass
+
+
 VENV = ".venv"
 PYTHON = "python3"
 PIP = "pip"
