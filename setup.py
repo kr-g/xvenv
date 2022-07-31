@@ -3,6 +3,8 @@ import setuptools
 
 #
 
+version = find_version
+
 setuptools.setup(
     name=projectname,
     version=version,

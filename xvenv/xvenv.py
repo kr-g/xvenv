@@ -185,9 +185,9 @@ def make(args_):
     no_rest_or_die(args_)
     or_die_with_mesg(setup(args_), "setup failed")
     or_die_with_mesg(pip(args_), "pip failed")
+    or_die_with_mesg(tools(args_), "tools failed")
     if args.quick:
         return
-    or_die_with_mesg(tools(args_), "tools failed")
     or_die_with_mesg(test(args_), "test failed")
     or_die_with_mesg(build(args_), "build failed")
     or_die_with_mesg(install(args_), "install failed")
