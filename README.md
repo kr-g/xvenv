@@ -111,7 +111,7 @@ there are no further dependencies.
 
 # all cmd-line opts
 
-all cmd-line opts described here [README_CMDLINE](./README_CMDLINE.md)
+all cmd-line opts described here [`README_CMDLINE`](./README_CMDLINE.md)
 
 
 # what's new ?
