@@ -9,7 +9,7 @@ for open development tasks and limitations.
 
 - `drop` sub-cmd for removing a venv
 - more verbose info
-- `binst` sub-cmd
+- `binst` sub-cmd for build and installing
 - `clean` sub-cmd for wiping build related folders
 - `qtest` sub-cmd for running black, flake8, and unit-tests
 - 
