@@ -77,8 +77,10 @@ what will create the venv, and install pip, setuptools, twine, black, and flake8
 as soon the build is ready, test it with
 
     python3 xvenv.py build
+    python3 xvenv.py install
     
-what will call `setup sdist build bdist_wheel` internally
+what will call `setup sdist build bdist_wheel` internally,
+followed by pip install -e .
 
 
 # platform
