@@ -92,6 +92,12 @@ run
 to install more packages into the venv
 
 
+# removing a venv
+
+just delete the `.venv` folder if the venv is nor required any more,
+there are no further dependencies.
+
+
 # what's new ?
 
 check
