@@ -55,6 +55,8 @@ run
 or just as single command
 
     python3 xvenv.py make 
+    python3 xvenv.py make -u 
+        -> to update the tools packages
     
 what will install the sources as `editable` inside the venv.
 
@@ -70,7 +72,11 @@ run
 
     python3 xvenv.py setup
     python3 xvenv.py pip
-    python3 xvenv.py tools     
+    python3 xvenv.py tools   
+    
+or
+    python3 xvenv.py tools -u
+        -> to update the tools packages
 
 what will create the venv, and install pip, setuptools, twine, black, and flake8 inside
     
@@ -88,7 +94,12 @@ followed by pip install -e .
 run 
 
     python3 xvenv.py tools -tool *pack1* *pack2* ...
-    
+
+or
+
+    python3 xvenv.py tools -tool *pack1* *pack2* ... -u
+        -> to update the tools packages
+  
 to install more packages into the venv
 
 
