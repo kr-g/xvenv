@@ -17,6 +17,7 @@ refer to [issues](https://github.com/kr-g/xvenv/issues)
 
 # LIMITATIONS
 
-- only linux
-- 
+- as of now just linux.
+
+  Contributions are Welcome to helping with Windows and Mac !!!
 

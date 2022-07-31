@@ -152,6 +152,8 @@ for open development tasks and limitations.
 
 as of now just linux
 
+Contributions are Welcome to helping with Windows and Mac !!!
+
 
 # development status
 
