@@ -9,13 +9,21 @@ works on linux
 
 all full installation is done by:
 
-python3 xvenv.py setup ** --clear --copy
-python3 xvenv.py pip
-python3 xvenv.py tools
-python3 xvenv.py test
-python3 xvenv.py build
-python3 xvenv.py install
-python3 xvenv.py run *your-cmd-line*
+    python3 xvenv.py setup ** --clear --copy
+    python3 xvenv.py pip
+    python3 xvenv.py tools
+    python3 xvenv.py test
+    python3 xvenv.py build
+    python3 xvenv.py install
+
+or call make for all steps above:
+
+    python3 xvenv.py make
+
+
+call a program within the venv
+
+    python3 xvenv.py run *your-cmd-line*
 
 
 hint:
@@ -68,6 +76,9 @@ cwd = "."
 
 def proc(args_):
     rc = subprocess.run(args_, capture_output=True)
+    if rc:
+        if rc.returncode == 0:
+            rc.returncode = None
     return rc
 
 
@@ -145,6 +156,23 @@ def install(args_):
     cmd = bashwrap(f"{args_.python} -m pip install -e .")
     rc = extrun(cmd)
     return rc
+
+
+def or_die_with_mesg(rc, text=None):
+    if rc.returncode:
+        print(text if text else "ERROR", file=sys.stderr)
+        debug and print(rc, file=sys.stderr)
+        sys.exit(1)
+
+
+def make(args_):
+    no_rest_or_die(args_)
+    or_die_with_mesg(setup(args_), "setup failed")
+    or_die_with_mesg(pip(args_), "pip failed")
+    or_die_with_mesg(tools(args_), "tools failed")
+    or_die_with_mesg(test(args_), "test failed")
+    or_die_with_mesg(build(args_), "build failed")
+    or_die_with_mesg(install(args_), "install failed")
 
 
 def run(args_):
@@ -269,6 +297,33 @@ def main_func(mkcopy=True):
 
     install_parser = subparsers.add_parser("install", help="pip -e . in venv")
     install_parser.set_defaults(func=install)
+
+    make_parser = subparsers.add_parser(
+        "make", help="sets up a venv and installs everything"
+    )
+    make_parser.set_defaults(func=make)
+
+    make_parser.add_argument(
+        "--clear",
+        "-c",
+        action="store_true",
+        default=False,
+        help="clear before install (default: %(default)s)",
+    )
+    make_parser.add_argument(
+        "--copy",
+        "-cp",
+        action="store_true",
+        default=False,
+        help="use copy instead of symlink (default: %(default)s)",
+    )
+    make_parser.add_argument(
+        "tool",
+        nargs="*",
+        action="store",
+        default=tools_,
+        help="tools to install (default: %(default)s)",
+    )
 
     run_parser = subparsers.add_parser("run", help="run a command")
     run_parser.set_defaults(func=run)
