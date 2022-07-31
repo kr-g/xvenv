@@ -284,7 +284,7 @@ def drop(args_):
         return 1
 
 
-def main_func(mkcopy=True):
+def main_func():
 
     global args, debug, verbose, python_, tools_, keep_temp, cwd
 
