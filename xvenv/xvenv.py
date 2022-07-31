@@ -341,6 +341,8 @@ def qtest(args_):
         FLAKE8_CFG = "flake8.cfg"
         cfg = getcfg(FLAKE8_CFG)
         dprint("lint cfg", cfg)
+        exclude_ = "--exclude '.venv'" if exclude_ == "" else exclude_
+        dprint("exclude", exclude_)
         rc = extrun(f"flake8 {cfg} {verbose_} {exclude_}")
 
     if args_.unit_test:
