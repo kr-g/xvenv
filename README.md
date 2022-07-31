@@ -64,7 +64,7 @@ then activate venv manually, or start the tool as described above.
 # use-case: new development
 
 think about you have started a new development, and now you want its required
-to have an venv in addition to encapsulate the dependencies.
+to have a venv in addition to encapsulate the dependencies.
 
 run 
 
