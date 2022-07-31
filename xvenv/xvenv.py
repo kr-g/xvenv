@@ -7,7 +7,7 @@ a venv beforehand
 
 works on linux
 
-all full installation is done by:
+a full installation is done by:
 
     python3 xvenv.py setup ** --clear --copy
     python3 xvenv.py pip
