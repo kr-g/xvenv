@@ -42,7 +42,7 @@ create a desktop starter with
 
 ## pip
 
-it can be installed from pip with
+it's **recommended** to install from pip with
 
     pip install xvenv
 
