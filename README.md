@@ -41,7 +41,8 @@ create a desktop starter with
 # use case: build a whole source package 
 
 e.g. when testing the build and installation
-when all sources are inside a single folder, cd into it and
+when all sources are inside a single folder 
+on the harddrive already, `cd` into it and
 
 run 
 
