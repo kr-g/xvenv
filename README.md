@@ -11,7 +11,7 @@ run
 
     python3 xvenv.py setup
     python3 xvenv.py pip
-    python3 xvenv.py tools *the-package*
+    python3 xvenv.py tools -tool *the-package*
     
 or just as single command
 
@@ -81,6 +81,15 @@ as soon the build is ready, test it with
     
 what will call `setup sdist build bdist_wheel` internally,
 followed by pip install -e .
+
+
+### more packages ?
+
+run 
+
+    python3 xvenv.py tools -tool *pack1* *pack2* ...
+    
+to install more packages into the venv
 
 
 # what's new ?
