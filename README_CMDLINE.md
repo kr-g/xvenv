@@ -8,7 +8,7 @@ run `xvenv -h` for help
 
     usage: python3 -m xvenv [options]
     
-    venv tool
+    venv mangement and builder tool
     
     positional arguments:
       {setup,pip,tools,build,install,binst,make,run,test,clone,drop}
