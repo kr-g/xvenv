@@ -191,7 +191,7 @@ run `xvenv qtest -h` for help
     optional arguments:
       -h, --help            show this help message and exit
       --exclude EXCLUDE, -ex EXCLUDE
-                            rexclude folder. (default: .venv)
+                            rexclude folder. (default: None)
       --format, --pep8, -f  run black, use black.cfg file for configuration
       --lint, -l            run flake8, use flake.cfg file for configuration
       --unit-test, --test, -t
