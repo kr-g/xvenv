@@ -93,5 +93,5 @@ alpha, the interface/ workflow might change without prior notice
     
 # license
 
-[`LICENSE`](./blob/main/LICENSE.md)
+[`LICENSE`](./LICENSE.md)
 
