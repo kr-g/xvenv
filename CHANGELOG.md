@@ -1,5 +1,5 @@
 
-see [`BACKLOG`](https://github.com/kr-g/smog/blob/xvenv/BACKLOG.md)
+see [`BACKLOG`](./BACKLOG.md)
 for open development tasks and limitations.
 
 

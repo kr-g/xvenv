@@ -1,6 +1,6 @@
 
 Check
-[`CHANGELOG`](https://github.com/kr-g/smog/blob/xvenv/CHANGELOG.md)
+[`CHANGELOG`](./CHANGELOG.md)
 for latest ongoing, or upcoming news.
 
 
@@ -12,7 +12,7 @@ for latest ongoing, or upcoming news.
 
 # OPEN ISSUES
 
-refer to [issues](https://github.com/kr-g/xvenv/issues)
+refer to [issues](./issues)
 
 
 # LIMITATIONS
