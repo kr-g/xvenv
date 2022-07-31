@@ -11,6 +11,7 @@ for open development tasks and limitations.
 - more verbose info
 - `binst` sub-cmd
 - `clean` sub-cmd for wiping build related folders
+- `qtest` sub-cmd for running black, flake8, and unit-tests
 - 
 
 

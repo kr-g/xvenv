@@ -11,7 +11,7 @@ run `xvenv -h` for help
     venv mangement and builder tool
     
     positional arguments:
-      {setup,pip,tools,clean,build,install,binst,make,run,test,clone,drop}
+      {setup,pip,tools,clean,build,install,binst,make,run,test,clone,drop,qtest}
                             sub-command --help
         setup               setup a venv
         pip                 pip installation
@@ -26,6 +26,7 @@ run `xvenv -h` for help
         test                test venv environment. outputs pip path and os.environ
         clone               clone xvenv.py to cwd folder
         drop                removes the '.venv' folder, and all contents
+        qtest               run quality helpers
     
     optional arguments:
       -h, --help            show this help message and exit
@@ -178,4 +179,21 @@ run `xvenv drop -h` for help
     
     optional arguments:
       -h, --help  show this help message and exit
+
+
+## xvenv qtest
+
+run `xvenv qtest -h` for help
+
+    usage: python3 -m xvenv [options] qtest [-h] [--exclude EXCLUDE] [--format]
+                                            [--lint] [--unit-test]
+    
+    optional arguments:
+      -h, --help            show this help message and exit
+      --exclude EXCLUDE, -ex EXCLUDE
+                            rexclude folder. (default: .venv)
+      --format, --pep8, -f  run black, use black.cfg file for configuration
+      --lint, -l            run flake8, use flake.cfg file for configuration
+      --unit-test, --test, -t
+                            run unittest
 
