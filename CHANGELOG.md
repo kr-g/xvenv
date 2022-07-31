@@ -6,7 +6,7 @@ for open development tasks and limitations.
 # CHANGELOG
 
 
-## version v0.0.1 - ???
+## version v0.0.1 - 20220731
 
 - first release
 - 
