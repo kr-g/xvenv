@@ -38,6 +38,26 @@ create a desktop starter with
     /usr/bin/python3 xvenv.py -cwd /your-path run *the-package-commandline*
     
     
+# installation
+
+## pip
+
+it can be installed from pip with
+
+    pip install xvenv
+
+
+## stand-alone or clone
+
+put this in your `~/.bashrc`, or `~/.bash_aliases`
+
+    alias xvenv="python3 ~/repo/xvenv/xvenv/xvenv.py"
+
+    # or ... any path where it resides in
+
+to use it from cmd-line
+
+    
 # use case: build a whole source package 
 
 e.g. when testing the build and installation
