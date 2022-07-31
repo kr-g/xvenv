@@ -9,7 +9,7 @@ for open development tasks and limitations.
 
 - `drop` sub-cmd for removing a venv
 - more verbose info
-. `binst` sub-cmd
+- `binst` sub-cmd
 - 
 
 
