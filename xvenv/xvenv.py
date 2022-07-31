@@ -151,7 +151,7 @@ def extrun(cmd):
 
 def no_rest_or_die(args_):
     dprint("no_rest_or_die")
-    
+
     if len(args_.rest) > 0:
         print("unknown opts", *args_.rest)
         sys.exit(1)
@@ -160,7 +160,7 @@ def no_rest_or_die(args_):
 def setup(args_):
     dprint("setup")
     no_rest_or_die(args_)
-    
+
     clear = "--clear" if args_.clear else ""
     copy = "--copies" if args_.copy else "--symlink"
     os.chdir(cwd)
@@ -172,7 +172,7 @@ def setup(args_):
 def pip(args_):
     dprint("pip")
     no_rest_or_die(args_)
-    
+
     cmd = bashwrap(f"{args_.python} -m ensurepip -U")
     rc = extrun(cmd)
     return rc
@@ -181,7 +181,7 @@ def pip(args_):
 def tools(args_):
     dprint("tools")
     no_rest_or_die(args_)
-    
+
     tools = " ".join(args_.tool)
     update = "-U" if args.update_deps else ""
     cmd = bashwrap(f"{args_.python} -m pip install {tools} {update}")
@@ -192,7 +192,7 @@ def tools(args_):
 def clean(args_):
     dprint("clean")
     no_rest_or_die(args_)
-    
+
     for fld in ["build", "dist", "*.egg-info"]:
         vprint("clean", fld)
         for fnam in glob.iglob(fld):
@@ -203,7 +203,7 @@ def clean(args_):
 def build(args_):
     dprint("build")
     no_rest_or_die(args_)
-    
+
     print("building...")
     if args_.build_clean:
         or_die_with_mesg(clean(args_), "build clean failed")
@@ -216,7 +216,7 @@ def build(args_):
 def install(args_):
     dprint("install")
     no_rest_or_die(args_)
-    
+
     print("installing...")
     cmd = bashwrap(f"{args_.python} -m pip install -e .")
     rc = extrun(cmd)
@@ -240,16 +240,16 @@ def or_die_with_mesg(rc, text=None):
 def make(args_):
     dprint("make")
     no_rest_or_die(args_)
-    
+
     print("making...")
-    
+
     or_die_with_mesg(setup(args_), "setup failed")
     or_die_with_mesg(pip(args_), "pip failed")
     or_die_with_mesg(tools(args_), "tools failed")
-    
+
     if args.quick:
         return
-    
+
     or_die_with_mesg(test(args_), "test failed")
     or_die_with_mesg(build(args_), "build failed")
     or_die_with_mesg(install(args_), "install failed")
@@ -266,7 +266,7 @@ def run(args_):
 def test(args_):
     dprint("test")
     no_rest_or_die(args_)
-    
+
     cmd = bashwrap(
         f"{args_.python} -c 'import os; import pip; print(pip.__file__);[ print(k,chr(61),v) for k,v in os.environ.items() ]'"
     )
@@ -277,7 +277,7 @@ def test(args_):
 def clone(args_):
     dprint("clone")
     no_rest_or_die(args_)
-    
+
     src = os.path.abspath(__file__)
     fnam = os.path.basename(__file__)
     dest = os.path.join(os.getcwd(), fnam)
@@ -314,36 +314,38 @@ def drop(args_):
         print("not found folder", fnam, file=sys.stderr)
         return 1
 
+
 def getcfg(fnam):
     if os.path.exists(fnam):
-        return f"--config {fnam}" 
+        return f"--config {fnam}"
     return ""
+
 
 def qtest(args_):
     dprint("qtest")
     no_rest_or_die(args_)
-    
+
     verbose_ = "-v" if debug else ""
-    exclude_ = "--exclude " + args.exclude
-    
+    exclude_ = "--exclude " + args.exclude if args.exclude else ""
+
     if args_.format:
         vprint("formating...")
         BLACK_CFG = "black.cfg"
         cfg = getcfg(BLACK_CFG)
-        dprint("black cfg",cfg)
-        rc = extrun( f"black {cfg} {verbose_} {exclude_} ." )
+        dprint("black cfg", cfg)
+        rc = extrun(f"black {cfg} {verbose_} {exclude_} .")
         or_die_with_mesg(rc, "black failed")
-        
+
     if args_.lint:
         vprint("linting...")
         FLAKE8_CFG = "flake8.cfg"
         cfg = getcfg(FLAKE8_CFG)
-        dprint("lint cfg",cfg)
-        rc = extrun( f"flake8 {cfg} {verbose_} {exclude_}" )
-        
+        dprint("lint cfg", cfg)
+        rc = extrun(f"flake8 {cfg} {verbose_} {exclude_}")
+
     if args_.unit_test:
         vprint("testing...")
-        rc = extrun( f"{python_} -m unittest {verbose_}" )
+        rc = extrun(f"{python_} -m unittest {verbose_}")
 
 
 def main_func():
@@ -534,7 +536,7 @@ def main_func():
         "--exclude",
         "-ex",
         type=str,
-        default=".venv",
+        default=None,
         help="rexclude folder. (default: %(default)s)",
     )
 
