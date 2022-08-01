@@ -1,3 +1,3 @@
-from xvenv.xvenv import main_func
+from xvenv.__main__ import main_func
 
 main_func()
