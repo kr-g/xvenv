@@ -35,7 +35,7 @@ run `xvenv -h` for help
       -debug, -d            display debug info (default: False)
       -python PYTHON, -p PYTHON
                             display debug info (default: python3)
-      -ewd EWD              venv folder (default: .)
+      -ewd EWD, -venv EWD   venv folder (default: .)
       -cwd CWD              working folder (default: .)
       --keep-temp, -kt      keep temporay file (default: False)
     

@@ -442,6 +442,7 @@ def main_func():
     )
     parser.add_argument(
         "-ewd",
+        "-venv",
         help="venv folder (default: %(default)s)",
         default=ewd,
     )
