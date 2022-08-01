@@ -113,10 +113,11 @@ run `xvenv install -h` for help
 
 run `xvenv binst -h` for help
 
-    usage: python3 -m xvenv [options] binst [-h]
+    usage: python3 -m xvenv [options] binst [-h] [--build-clean]
     
     optional arguments:
-      -h, --help  show this help message and exit
+      -h, --help            show this help message and exit
+      --build-clean, -bclr  clean all build related folders (default: False)
 
 
 ## xvenv make
