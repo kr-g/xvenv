@@ -125,8 +125,25 @@ to install more packages into the venv
 
 # removing a venv
 
-just delete the `.venv` folder if the venv is nor required any more,
+just delete the `.venv` folder manuall if the venv is nor required any more,
 there are no further dependencies.
+
+     python3 xvenv.py drop
+     
+
+# another use case: install thonny and thonny-gitonic
+
+just open a new bash and run
+
+    mkdir thonnygitonic
+    cd $_
+    python3 xvenv.py -V make -q -tool thonny thonny-gitonic
+        # -> quick installation
+        # -> will print verbose output
+
+then run with 
+
+    python3 xvenv.py run thonny
 
 
 # all cmd-line opts
