@@ -89,6 +89,7 @@ python_ = PYTHON
 tools_ = ["setuptools", "twine", "wheel", "black", "flake8"]
 keep_temp = False
 cwd = "."
+ewd = "."
 
 
 def dprint(*args_, **kwargs_):
@@ -147,9 +148,10 @@ def proc(args_):
 
 @trprint
 def bashwrap(cmd):
+    bin_activate = os.path.join(ewd, f"{VENV}/bin/activate")
     wrap = "#!/bin/bash -l \n"
     wrap += f'cd "{cwd}" \n'
-    wrap += f'. "{VENV}/bin/activate" \n'
+    wrap += f'. "{bin_activate}" \n'
     wrap += f"{cmd} \n"
     return wrap
 
@@ -301,25 +303,24 @@ def make(args_):
 
 @trprint
 def run(args_):
-    rest = shlex.join(args_.rest)
-    cmd = bashwrap(f"{rest}")
-    rc = extrun(cmd)
-    return rc
+
+    with VerboseOn():
+        rest = shlex.join(args_.rest)
+        cmd = bashwrap(f"{rest}")
+        rc = extrun(cmd)
+        return rc
 
 
 @trprint
 def test(args_):
     no_rest_or_die(args_)
 
-    # switch verbose on for qtest
-    global verbose
-    verbose = True
-
-    cmd = bashwrap(
-        f"{args_.python} -c 'import os; import pip; print(pip.__file__);[ print(k,chr(61),v) for k,v in os.environ.items() ]'"
-    )
-    rc = extrun(cmd)
-    return rc
+    with VerboseOn():
+        cmd = bashwrap(
+            f"{args_.python} -c 'import os; import pip; print(pip.__file__);[ print(k,chr(61),v) for k,v in os.environ.items() ]'"
+        )
+        rc = extrun(cmd)
+        return rc
 
 
 @trprint
@@ -405,7 +406,7 @@ def qtest(args_):
 
 def main_func():
 
-    global args, debug, verbose, python_, tools_, keep_temp, cwd
+    global args, debug, verbose, python_, tools_, keep_temp, cwd, ewd
 
     parser = argparse.ArgumentParser(
         prog="xvenv",
@@ -440,8 +441,13 @@ def main_func():
         default=python_,
     )
     parser.add_argument(
+        "-ewd",
+        help="venv folder (default: %(default)s)",
+        default=ewd,
+    )
+    parser.add_argument(
         "-cwd",
-        help="venv working folder (default: %(default)s)",
+        help="working folder (default: %(default)s)",
         default=cwd,
     )
     parser.add_argument(
@@ -636,6 +642,7 @@ def main_func():
 
     keep_temp = args.keep_temp
     cwd = args.cwd
+    ewd = args.ewd
 
     verbose = args.verbose
 
