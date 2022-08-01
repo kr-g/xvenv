@@ -115,9 +115,9 @@ def proc(args_):
 
 def bashwrap(cmd):
     dprint("bashwrap")
-    wrap = "#!/bin/bash -il \n"
-    wrap += f"cd {cwd}\n"
-    wrap += f". {VENV}/bin/activate \n"
+    wrap = "#!/bin/bash -l \n"
+    wrap += f"cd "{cwd}"\n"
+    wrap += f". \"{VENV}/bin/activate\" \n"
     wrap += f"{cmd} \n"
     return wrap
 
@@ -136,7 +136,8 @@ def extrun(cmd):
 
     rc = proc(
         [
-            "bash",
+            "/bin/bash",
+            "-l",
             fnam,
         ]
     )
