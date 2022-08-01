@@ -4,20 +4,25 @@
 
 `xvenv.py` can be installed with pip, or it runs as single stand-alone script.
 
+when installed via pip the command execution `python3 xvenv.py` 
+can be replaced just by `xvenv`.
+
 
 # use-case: try an new application from pypi
 
 run 
 
-    python3 xvenv.py setup
-    python3 xvenv.py pip
-    python3 xvenv.py tools -tool *the-package*
+    xvenv setup
+    xvenv pip
+    xvenv tools -tool *the-package*
     
 or just as single command
 
-    python3 xvenv.py make --quick -tool *the-package*
+    xvenv make --quick -tool *the-package*
 
-so `xvenv.py` will create a folder `.venv`, and will do there all required steps.
+
+
+so `xvenv` will create a folder `.venv`, and will do there all required steps.
 
 then its possible to start either with normal venv
 
@@ -27,7 +32,7 @@ then its possible to start either with normal venv
     
 or 
 
-    python3 xvenv.py run *the-package-commandline*
+    xvenv run *the-package-commandline*
     
 
 ## desktop starter
@@ -66,16 +71,16 @@ on the harddrive already, `cd` into it and
 
 run 
 
-    python3 xvenv.py setup
-    python3 xvenv.py pip
-    python3 xvenv.py tools 
-    python3 xvenv.py build  
-    python3 xvenv.py setup
+    xvenv setup
+    xvenv pip
+    xvenv tools 
+    xvenv build  
+    xvenv setup
    
 or just as single command
 
-    python3 xvenv.py make 
-    python3 xvenv.py make -u 
+    xvenv make 
+    xvenv make -u 
         -> to update the tools packages
     
 what will install the sources as `editable` inside the venv.
@@ -90,20 +95,20 @@ to have a venv in addition to encapsulate the dependencies.
 
 run 
 
-    python3 xvenv.py setup
-    python3 xvenv.py pip
-    python3 xvenv.py tools   
+    xvenv setup
+    xvenv pip
+    xvenv tools   
     
 or
-    python3 xvenv.py tools -u
+    xvenv tools -u
         -> to update the tools packages
 
 what will create the venv, and install pip, setuptools, twine, black, and flake8 inside
     
 as soon the build is ready, test it with
 
-    python3 xvenv.py build
-    python3 xvenv.py install
+    xvenv build
+    xvenv install
     
 what will call `setup sdist build bdist_wheel` internally,
 followed by pip install -e .
@@ -113,11 +118,11 @@ followed by pip install -e .
 
 run 
 
-    python3 xvenv.py tools -tool *pack1* *pack2* ...
+    xvenv tools -tool *pack1* *pack2* ...
 
 or
 
-    python3 xvenv.py tools -tool *pack1* *pack2* ... -u
+    xvenv tools -tool *pack1* *pack2* ... -u
         -> to update the tools packages
   
 to install more packages into the venv
@@ -128,7 +133,7 @@ to install more packages into the venv
 just delete the `.venv` folder manuall if the venv is nor required any more,
 there are no further dependencies.
 
-     python3 xvenv.py drop
+     xvenv drop
      
 
 # another use case: install thonny and thonny-gitonic
@@ -137,13 +142,13 @@ just open a new bash and run
 
     mkdir thonnygitonic
     cd $_
-    python3 xvenv.py -V make -q -tool thonny thonny-gitonic
+    xvenv -V make -q -tool thonny thonny-gitonic
     
 what will do a quick installation and print verbose output
 
 then run with 
 
-    python3 xvenv.py run thonny
+    xvenv run thonny
 
 
 # all cmd-line opts
