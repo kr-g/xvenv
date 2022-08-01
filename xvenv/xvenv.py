@@ -58,6 +58,7 @@ python3 /somefolder/xvenv.py -cwd /otherfolder/repo/pymodule run pymodule-cmdlin
 import sys
 import os
 import glob
+from functools import wraps
 import argparse
 import subprocess
 import tempfile
@@ -98,7 +99,18 @@ def vprint(*args_, **kwargs_):
     (debug or verbose) and print(*args_, **kwargs_)
 
 
+def trprint():
+    import inspect
+
+    cf = inspect.currentframe()
+    f = cf.f_back
+    fi = inspect.getframeinfo(f)
+    ca = inspect.getargvalues(f)
+    dprint("*TRACE*", fi.function, ca.locals)
+
+
 def tprint(func):
+    @wraps(func)
     def _w():
         def __w(*a, **kw):
             dprint(func.__name__, a, kw)
@@ -109,8 +121,8 @@ def tprint(func):
     return _w()
 
 
-@tprint
 def proc(args_):
+    trprint()
     proc = subprocess.Popen(args_, stdout=subprocess.PIPE, stderr=subprocess.STDOUT)
     dprint("proc", proc.returncode)
     if proc:
@@ -124,8 +136,8 @@ def proc(args_):
         return proc.returncode
 
 
-@tprint
 def bashwrap(cmd):
+    trprint()
     wrap = "#!/bin/bash -l \n"
     wrap += f'cd "{cwd}" \n'
     wrap += f'. "{VENV}/bin/activate" \n'
@@ -133,8 +145,8 @@ def bashwrap(cmd):
     return wrap
 
 
-@tprint
 def extrun(cmd):
+    trprint()
     # fnam = os.path.join(tempfile.gettempdir(), TEMPRUN)
     fd, fnam = tempfile.mkstemp(prefix="xvenv-", suffix=".sh")
     os.close(fd)
@@ -160,15 +172,15 @@ def extrun(cmd):
     return rc
 
 
-@tprint
 def no_rest_or_die(args_):
+    trprint()
     if len(args_.rest) > 0:
         print("unknown opts", *args_.rest)
         sys.exit(1)
 
 
-@tprint
 def setup(args_):
+    trprint()
     no_rest_or_die(args_)
 
     clear = "--clear" if args_.clear else ""
@@ -179,8 +191,8 @@ def setup(args_):
     return rc
 
 
-@tprint
 def pip(args_):
+    trprint()
     no_rest_or_die(args_)
 
     cmd = bashwrap(f"{args_.python} -m ensurepip -U")
@@ -198,8 +210,8 @@ def tools(args_):
     return rc
 
 
-@tprint
 def clean(args_):
+    trprint()
     no_rest_or_die(args_)
 
     for fld in ["build", "dist", "*.egg-info"]:
@@ -209,8 +221,8 @@ def clean(args_):
             shutil.rmtree(fnam, ignore_errors=False, onerror=report)
 
 
-@tprint
 def build(args_):
+    trprint()
     no_rest_or_die(args_)
 
     print("building...")
@@ -222,8 +234,8 @@ def build(args_):
     return rc
 
 
-@tprint
 def install(args_):
+    trprint()
     no_rest_or_die(args_)
 
     print("installing...")
@@ -232,22 +244,22 @@ def install(args_):
     return rc
 
 
-@tprint
 def binst(args_):
+    trprint()
     or_die_with_mesg(build(args_), "build failed")
     or_die_with_mesg(install(args_), "install failed")
 
 
-@tprint
 def or_die_with_mesg(rc, text=None):
+    trprint()
     if rc:
         print(text if text else "ERROR", file=sys.stderr)
         debug and print(rc, file=sys.stderr)
         sys.exit(1)
 
 
-@tprint
 def make(args_):
+    trprint()
     no_rest_or_die(args_)
 
     print("making...")
@@ -264,16 +276,16 @@ def make(args_):
     or_die_with_mesg(install(args_), "install failed")
 
 
-@tprint
 def run(args_):
+    trprint()
     rest = shlex.join(args_.rest)
     cmd = bashwrap(f"{rest}")
     rc = extrun(cmd)
     return rc
 
 
-@tprint
 def test(args_):
+    trprint()
     no_rest_or_die(args_)
 
     cmd = bashwrap(
@@ -283,8 +295,8 @@ def test(args_):
     return rc
 
 
-@tprint
 def clone(args_):
+    trprint()
     no_rest_or_die(args_)
 
     src = os.path.abspath(__file__)
@@ -301,8 +313,8 @@ def report(*args):
     print("ERROR", args, file=sys.stderr)
 
 
-@tprint
 def drop(args_):
+    trprint()
     no_rest_or_die(args_)
 
     cwd = os.getcwd()
@@ -330,8 +342,8 @@ def getcfg(fnam):
     return ""
 
 
-@tprint
 def qtest(args_):
+    trprint()
     no_rest_or_die(args_)
 
     verbose_ = "-v" if debug else ""
