@@ -5,7 +5,15 @@ for open development tasks and limitations.
 
 # CHANGELOG
 
-## version v0.0.2 - ???
+## version v0.0.3 - ???
+
+- `-venv` cmd-line parameter in addition to `-cwd` parameter
+  - `-venv` specifies the venv folder, and 
+  `-cwd` is working directory folder
+- 
+
+
+## version v0.0.2 - 20220801
 
 - `drop` sub-cmd for removing a venv
 - more verbose info
