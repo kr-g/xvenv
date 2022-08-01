@@ -138,8 +138,8 @@ just open a new bash and run
     mkdir thonnygitonic
     cd $_
     python3 xvenv.py -V make -q -tool thonny thonny-gitonic
-        # -> quick installation
-        # -> will print verbose output
+    
+what will do a quick installation and print verbose output
 
 then run with 
 
