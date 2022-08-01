@@ -165,7 +165,7 @@ assuming a `venv` with default tools setup
     xvenv -venv ~/sample/ -d run black .
         # -> will run black from the venv in the current folder
 
-(* -venv is new in version v0.0.3, but with absoulte path for black it work in v.0.0.2)
+(* `-venv` is new in version v0.0.3, but with absoulte path for black it works in v.0.0.2)
 
 
 # all cmd-line opts
