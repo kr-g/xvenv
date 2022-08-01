@@ -115,8 +115,11 @@ def trprint(func):
     def _w():
         @wraps(func)
         def __w(*a, **kw):
-            dprint("*TRACE*", func.__name__, a, kw)
-            return func(*a, *kw)
+            try:
+                dprint("*TRACE*", "enter", func.__name__, a, kw)
+                return func(*a, *kw)
+            finally:
+                dprint("*TRACE*", "leave", func.__name__, a, kw)
 
         return __w
 
@@ -134,8 +137,12 @@ def proc(args_):
                 break
             vprint(outs, end="")
 
-    if proc.returncode:
-        return proc.returncode
+    dprint("done proc.returncode", proc.returncode)
+
+    if proc.returncode == 0:
+        return
+
+    return proc.returncode
 
 
 @trprint
@@ -290,6 +297,10 @@ def run(args_):
 def test(args_):
     no_rest_or_die(args_)
 
+    # switch verbose on for qtest
+    global verbose
+    verbose = True
+
     cmd = bashwrap(
         f"{args_.python} -c 'import os; import pip; print(pip.__file__);[ print(k,chr(61),v) for k,v in os.environ.items() ]'"
     )
@@ -351,6 +362,10 @@ def qtest(args_):
     verbose_ = "-v" if debug else ""
     exclude_ = "--exclude " + args.exclude if args.exclude else ""
 
+    # switch verbose on for qtest
+    global verbose
+    verbose = True
+
     if args_.format:
         vprint("formating...")
         BLACK_CFG = "black.cfg"
@@ -371,6 +386,9 @@ def qtest(args_):
     if args_.unit_test:
         vprint("testing...")
         rc = extrun(f"{python_} -m unittest {verbose_}")
+
+    if not any([args_.format, args_.lint, args_.unit_test]):
+        print("what? use --help")
 
 
 def main_func():
