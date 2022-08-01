@@ -230,27 +230,41 @@ def clean(args_):
             shutil.rmtree(fnam, ignore_errors=False, onerror=report)
 
 
+class VerboseOn(object):
+    def __enter__(self):
+        global verbose
+        self.bak = verbose
+        verbose = True
+        return self
+
+    def __exit__(self, exc_type, exc_value, traceback):
+        global verbose
+        verbose = self.bak
+
+
 @trprint
 def build(args_):
     no_rest_or_die(args_)
 
-    print("building...")
-    if args_.build_clean:
-        or_die_with_mesg(clean(args_), "build clean failed")
+    with VerboseOn():
+        print("building...")
+        if args_.build_clean:
+            or_die_with_mesg(clean(args_), "build clean failed")
 
-    cmd = bashwrap(f"{args_.python} -m setup sdist build bdist_wheel")
-    rc = extrun(cmd)
-    return rc
+        cmd = bashwrap(f"{args_.python} -m setup sdist build bdist_wheel")
+        rc = extrun(cmd)
+        return rc
 
 
 @trprint
 def install(args_):
     no_rest_or_die(args_)
 
-    print("installing...")
-    cmd = bashwrap(f"{args_.python} -m pip install -e .")
-    rc = extrun(cmd)
-    return rc
+    with VerboseOn():
+        print("installing...")
+        cmd = bashwrap(f"{args_.python} -m pip install -e .")
+        rc = extrun(cmd)
+        return rc
 
 
 @trprint
@@ -362,30 +376,28 @@ def qtest(args_):
     verbose_ = "-v" if debug else ""
     exclude_ = "--exclude " + args.exclude if args.exclude else ""
 
-    # switch verbose on for qtest
-    global verbose
-    verbose = True
+    with VerboseOn():
 
-    if args_.format:
-        vprint("formating...")
-        BLACK_CFG = "black.cfg"
-        cfg = getcfg(BLACK_CFG)
-        dprint("black cfg", cfg)
-        rc = extrun(f"black {cfg} {verbose_} {exclude_} .")
-        or_die_with_mesg(rc, "black failed")
+        if args_.format:
+            vprint("formating...")
+            BLACK_CFG = "black.cfg"
+            cfg = getcfg(BLACK_CFG)
+            dprint("black cfg", cfg)
+            rc = extrun(f"black {cfg} {verbose_} {exclude_} .")
+            or_die_with_mesg(rc, "black failed")
 
-    if args_.lint:
-        vprint("linting...")
-        FLAKE8_CFG = "flake8.cfg"
-        cfg = getcfg(FLAKE8_CFG)
-        dprint("lint cfg", cfg)
-        exclude_ = "--exclude '.venv'" if exclude_ == "" else exclude_
-        dprint("exclude", exclude_)
-        rc = extrun(f"flake8 {cfg} {verbose_} {exclude_}")
+        if args_.lint:
+            vprint("linting...")
+            FLAKE8_CFG = "flake8.cfg"
+            cfg = getcfg(FLAKE8_CFG)
+            dprint("lint cfg", cfg)
+            exclude_ = "--exclude '.venv'" if exclude_ == "" else exclude_
+            dprint("exclude", exclude_)
+            rc = extrun(f"flake8 {cfg} {verbose_} {exclude_}")
 
-    if args_.unit_test:
-        vprint("testing...")
-        rc = extrun(f"{python_} -m unittest {verbose_}")
+        if args_.unit_test:
+            vprint("testing...")
+            rc = extrun(f"{python_} -m unittest {verbose_}")
 
     if not any([args_.format, args_.lint, args_.unit_test]):
         print("what? use --help")
