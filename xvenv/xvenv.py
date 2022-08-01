@@ -454,7 +454,7 @@ def main_func():
 
     subparsers = parser.add_subparsers(help="sub-command --help")
 
-    setup_parser = subparsers.add_parser("setup", help="setup a venv")
+    setup_parser = subparsers.add_parser("setup", help="setup a venv in folder '.venv'")
     setup_parser.set_defaults(func=setup)
 
     setup_parser.add_argument(
@@ -472,10 +472,10 @@ def main_func():
         help="use copy instead of symlink (default: %(default)s)",
     )
 
-    pip_parser = subparsers.add_parser("pip", help="pip installation")
+    pip_parser = subparsers.add_parser("pip", help="install pip")
     pip_parser.set_defaults(func=pip)
 
-    tools_parser = subparsers.add_parser("tools", help="tools installation")
+    tools_parser = subparsers.add_parser("tools", help="install tools")
     tools_parser.set_defaults(func=tools)
     tools_parser.add_argument(
         "--update-deps",
@@ -494,7 +494,7 @@ def main_func():
 
     clean_parser = subparsers.add_parser(
         "clean",
-        help="clean all build folders",
+        help="clean all build related folders",
     )
     clean_parser.set_defaults(func=clean)
 

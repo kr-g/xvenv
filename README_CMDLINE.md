@@ -13,10 +13,10 @@ run `xvenv -h` for help
     positional arguments:
       {setup,pip,tools,clean,build,install,binst,make,run,test,clone,drop,qtest}
                             sub-command --help
-        setup               setup a venv
-        pip                 pip installation
-        tools               tools installation
-        clean               clean all build folders
+        setup               setup a venv in folder '.venv'
+        pip                 install pip
+        tools               install tools
+        clean               clean all build related folders
         build               build with setuptools. like calling setup sdist build
                             bdist_wheel
         install             pip install editabe in venv

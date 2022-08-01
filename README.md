@@ -8,7 +8,7 @@ when installed via pip the command execution `python3 xvenv.py`
 can be replaced just by `xvenv`.
 
 
-# use-case: try an new application from pypi
+# use-case: try a new application from pypi
 
 run 
 
@@ -37,8 +37,8 @@ or
 
 ## desktop starter
 
-when done the steps above and the package starts, 
-create a desktop starter with
+when done the steps above and the package starts e.g.
+a desktop starter can be created with
 
     /usr/bin/python3 xvenv.py -cwd /your-path run *the-package-commandline*
     
@@ -54,20 +54,21 @@ it's **recommended** to install from pip with
 
 ## stand-alone or clone
 
-put this in your `~/.bashrc`, or `~/.bash_aliases`
+put this in `~/.bashrc`, or `~/.bash_aliases`
 
     alias xvenv="python3 ~/repo/xvenv/xvenv/xvenv.py"
 
-    # or ... any path where it resides in
+    # or ... any path where the script resides in
 
 to use it from cmd-line
 
     
 # use case: build a whole source package 
 
-e.g. when testing the build and installation
-when all sources are inside a single folder 
-on the harddrive already, `cd` into it and
+e.g. when testing a build and installation
+where all sources are inside a single folder 
+on the harddrive already. 
+then `cd` into it and
 
 run 
 
@@ -90,7 +91,7 @@ then activate venv manually, or start the tool as described above.
     
 # use-case: new development
 
-think about you have started a new development, and now you want its required
+think about having started a new development, and now its required
 to have a venv in addition to encapsulate the dependencies.
 
 run 
@@ -103,15 +104,15 @@ or
     xvenv tools -u
         -> to update the tools packages
 
-what will create the venv, and install pip, setuptools, twine, black, and flake8 inside
+what will create the venv, then install pip, setuptools, twine, black, and flake8 
     
-as soon the build is ready, test it with
+as soon the build is ready, test with
 
     xvenv build
     xvenv install
     
 what will call `setup sdist build bdist_wheel` internally,
-followed by pip install -e .
+followed by `pip install -e`.
 
 
 # more packages ?
@@ -130,30 +131,33 @@ to install more packages into the venv
 
 # removing a venv
 
-just delete the `.venv` folder manuall if the venv is nor required any more,
-there are no further dependencies.
+a `.venv` folder can be deleted manuall if the venv is 
+not required anymore. there are no further dependencies.
+
+or run 
 
      xvenv drop
      
 
 # another use case: install thonny and thonny-gitonic
 
-just open a new bash and run
+open a new bash and run
 
     mkdir thonnygitonic
     cd $_
     xvenv -V make -q -tool thonny thonny-gitonic
     
-what will do a quick installation and print verbose output
+what will do a `quick` installation and print verbose output
 
-then run with 
+then run  
 
     xvenv run thonny
 
 
 # all cmd-line opts
 
-all cmd-line opts described here [`README_CMDLINE`](./README_CMDLINE.md)
+all cmd-line opts are described here 
+[`README_CMDLINE`](./README_CMDLINE.md)
 
 
 # what's new ?
@@ -174,7 +178,7 @@ for open development tasks and limitations.
 
 as of now just linux
 
-Contributions are Welcome to helping with Windows and Mac !!!
+Contributiors are welcome to helping with Windows and Mac !!!
 
 
 # development status
