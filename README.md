@@ -154,6 +154,18 @@ then run
     xvenv run thonny
 
 
+# another use case: using venv installed tools - formating with black
+
+assuming a `venv` with default tools setup 
+
+    mkdir ~/sample
+    cd $_
+    xvenv -V make -q -u
+    cd *another-folder*
+    xvenv -venv ~/sample/ -d run black .
+        # -> will run black from the venv in the current folder
+
+
 # all cmd-line opts
 
 all cmd-line opts are described here 
