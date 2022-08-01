@@ -124,7 +124,7 @@ def tprint(func):
 def proc(args_):
     trprint()
     proc = subprocess.Popen(args_, stdout=subprocess.PIPE, stderr=subprocess.STDOUT)
-    dprint("proc", proc.returncode)
+    dprint("proc.returncode", proc.returncode)
     if proc:
         while True:
             outs = proc.stdout.readline().decode()
