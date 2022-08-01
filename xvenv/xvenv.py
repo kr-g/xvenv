@@ -98,8 +98,19 @@ def vprint(*args_, **kwargs_):
     (debug or verbose) and print(*args_, **kwargs_)
 
 
+def tprint(func):
+    def _w():
+        def __w(*a, **kw):
+            dprint(func.__name__, a, kw)
+            return func(*a, *kw)
+
+        return __w
+
+    return _w()
+
+
+@tprint
 def proc(args_):
-    dprint("proc", args_)
     proc = subprocess.Popen(args_, stdout=subprocess.PIPE, stderr=subprocess.STDOUT)
     dprint("proc", proc.returncode)
     if proc:
@@ -113,18 +124,17 @@ def proc(args_):
         return proc.returncode
 
 
+@tprint
 def bashwrap(cmd):
-    dprint("bashwrap")
     wrap = "#!/bin/bash -l \n"
-    wrap += f"cd "{cwd}"\n"
-    wrap += f". \"{VENV}/bin/activate\" \n"
+    wrap += f'cd "{cwd}" \n'
+    wrap += f'. "{VENV}/bin/activate" \n'
     wrap += f"{cmd} \n"
     return wrap
 
 
+@tprint
 def extrun(cmd):
-    dprint("extrun", cmd)
-
     # fnam = os.path.join(tempfile.gettempdir(), TEMPRUN)
     fd, fnam = tempfile.mkstemp(prefix="xvenv-", suffix=".sh")
     os.close(fd)
@@ -150,16 +160,15 @@ def extrun(cmd):
     return rc
 
 
+@tprint
 def no_rest_or_die(args_):
-    dprint("no_rest_or_die")
-
     if len(args_.rest) > 0:
         print("unknown opts", *args_.rest)
         sys.exit(1)
 
 
+@tprint
 def setup(args_):
-    dprint("setup")
     no_rest_or_die(args_)
 
     clear = "--clear" if args_.clear else ""
@@ -170,8 +179,8 @@ def setup(args_):
     return rc
 
 
+@tprint
 def pip(args_):
-    dprint("pip")
     no_rest_or_die(args_)
 
     cmd = bashwrap(f"{args_.python} -m ensurepip -U")
@@ -180,7 +189,6 @@ def pip(args_):
 
 
 def tools(args_):
-    dprint("tools")
     no_rest_or_die(args_)
 
     tools = " ".join(args_.tool)
@@ -190,8 +198,8 @@ def tools(args_):
     return rc
 
 
+@tprint
 def clean(args_):
-    dprint("clean")
     no_rest_or_die(args_)
 
     for fld in ["build", "dist", "*.egg-info"]:
@@ -201,8 +209,8 @@ def clean(args_):
             shutil.rmtree(fnam, ignore_errors=False, onerror=report)
 
 
+@tprint
 def build(args_):
-    dprint("build")
     no_rest_or_die(args_)
 
     print("building...")
@@ -214,8 +222,8 @@ def build(args_):
     return rc
 
 
+@tprint
 def install(args_):
-    dprint("install")
     no_rest_or_die(args_)
 
     print("installing...")
@@ -224,22 +232,22 @@ def install(args_):
     return rc
 
 
+@tprint
 def binst(args_):
-    dprint("binst")
     or_die_with_mesg(build(args_), "build failed")
     or_die_with_mesg(install(args_), "install failed")
 
 
+@tprint
 def or_die_with_mesg(rc, text=None):
-    dprint("or_die_with_mesg")
     if rc:
         print(text if text else "ERROR", file=sys.stderr)
         debug and print(rc, file=sys.stderr)
         sys.exit(1)
 
 
+@tprint
 def make(args_):
-    dprint("make")
     no_rest_or_die(args_)
 
     print("making...")
@@ -256,16 +264,16 @@ def make(args_):
     or_die_with_mesg(install(args_), "install failed")
 
 
+@tprint
 def run(args_):
-    dprint("run")
     rest = shlex.join(args_.rest)
     cmd = bashwrap(f"{rest}")
     rc = extrun(cmd)
     return rc
 
 
+@tprint
 def test(args_):
-    dprint("test")
     no_rest_or_die(args_)
 
     cmd = bashwrap(
@@ -275,8 +283,8 @@ def test(args_):
     return rc
 
 
+@tprint
 def clone(args_):
-    dprint("clone")
     no_rest_or_die(args_)
 
     src = os.path.abspath(__file__)
@@ -293,8 +301,8 @@ def report(*args):
     print("ERROR", args, file=sys.stderr)
 
 
+@tprint
 def drop(args_):
-    dprint("drop")
     no_rest_or_die(args_)
 
     cwd = os.getcwd()
@@ -322,8 +330,8 @@ def getcfg(fnam):
     return ""
 
 
+@tprint
 def qtest(args_):
-    dprint("qtest")
     no_rest_or_die(args_)
 
     verbose_ = "-v" if debug else ""
@@ -466,6 +474,13 @@ def main_func():
 
     binst_parser = subparsers.add_parser("binst", help="build and install")
     binst_parser.set_defaults(func=binst)
+    binst_parser.add_argument(
+        "--build-clean",
+        "-bclr",
+        action="store_true",
+        default=False,
+        help="clean all build related folders (default: %(default)s)",
+    )
 
     make_parser = subparsers.add_parser(
         "make", help="sets up a venv and installs everything"
