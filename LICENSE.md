@@ -8,7 +8,7 @@ https://github.com/kr-g/xvenv
 
 this software is dual licensed, and free only for non-commercial use. 
 
-license file reference:
+license file URL:
 [`LICENSE`](./LICENSE.md)
 
 - private license: this software is free for "non-commercial" individuals, 
