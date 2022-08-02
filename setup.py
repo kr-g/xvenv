@@ -15,7 +15,7 @@ rc = check_setup(prelude=False)
 
 # test.pypi
 # twine upload --repository testpypi dist/*
-# python3 -m pip install --index-url https://test.pypi.org/simple/ --extra-index-url https://pypi.org/simple/ xvenv
+# python3 -m pip install --index-url https://test.pypi.org/simple/ --extra-index-url https://pypi.org/simple/ **proj**
 
 # pypi
 # twine upload dist/*
