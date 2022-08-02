@@ -96,6 +96,7 @@ tools_ = ["setuptools", "twine", "wheel", "black", "flake8"]
 keep_temp = False
 cwd = "."
 ewd = "."
+cdvenv = False
 
 
 def dprint(*args_, **kwargs_):
@@ -174,6 +175,9 @@ def bashwrap(cmd):
 """
     bin_activate = os.path.join(ewd, f"{VENV}/bin/activate")
     wrap = "#!/bin/bash -l \n"
+    if cdvenv:
+        wrap += f'cd "{bin_activate}" \n'
+        wrap += errfunc
     wrap += f'. "{bin_activate}" \n'
     wrap += errfunc
     wrap += f'cd "{cwd}" \n'
@@ -443,7 +447,7 @@ def qtest(args_):
 
 def main_func():
 
-    global args, debug, verbose, python_, tools_, keep_temp, cwd, ewd
+    global args, debug, verbose, python_, tools_, keep_temp, cwd, ewd, cdvenv
 
     parser = argparse.ArgumentParser(
         prog="xvenv",
@@ -487,6 +491,12 @@ def main_func():
         "-cwd",
         help="working folder (default: %(default)s)",
         default=cwd,
+    )
+    parser.add_argument(
+        "-cdvenv",
+        help="cd into venv before activate (default: %(default)s)",
+        action="store_true",
+        default=cdvenv,
     )
     parser.add_argument(
         "--keep-temp",

@@ -37,6 +37,7 @@ run `xvenv -h` for help
                             display debug info (default: python3)
       -ewd EWD, -venv EWD   venv folder (default: .)
       -cwd CWD              working folder (default: .)
+      -cdvenv               cd into venv before activate (default: False)
       --keep-temp, -kt      keep temporay file (default: False)
     
     for more information refer to https://github.com/kr-g/xvenv
