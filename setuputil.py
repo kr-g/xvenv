@@ -126,9 +126,6 @@ def load_base_settings():
         return json.load(f)
 
 
-#
-
-
 def project_settings(projectname=None, fnam="const.py", version="VERSION"):
 
     pyver = platform.python_version_tuple()[:2]
@@ -180,6 +177,13 @@ def replace_settings(project_settings, base_settings):
             if vv.find(r) >= 0:
                 base_settings[kk] = vv.replace(r, v)
     return base_settings
+
+
+def build_setup_settings(proj_settings, base_settings):
+    base_settings = replace_settings(proj_settings, base_settings)
+    settings = dict(proj_settings["setup"])
+    settings.update(base_settings)
+    return settings
 
 
 #
@@ -314,10 +318,7 @@ def setup_settings(base_settings=None, proj_settings=None, dump=True):
     if proj_settings is None:
         proj_settings = project_settings()
 
-    base_settings = replace_settings(proj_settings, base_settings)
-
-    settings = dict(proj_settings["setup"])
-    settings.update(base_settings)
+    settings = build_setup_settings(proj_settings, base_settings)
 
     if dump:
         print("settings", json.dumps(settings, indent=4))
