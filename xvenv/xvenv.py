@@ -207,6 +207,9 @@ def pip(args_):
     no_rest_or_die(args_)
 
     cmd = bashwrap(f"{args_.python} -m ensurepip -U")
+    or_die_with_mesg(extrun(cmd), "ensurepip failed")
+
+    cmd = bashwrap(f"{args_.python} -m pip install pip -U")
     rc = extrun(cmd)
     return rc
 
