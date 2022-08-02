@@ -6,6 +6,7 @@ check_setup()
 
 setuptools.setup(**setup_settings)
 
+print("build version tag", setup_settings["version"])
 
 # python3 -m setup sdist build bdist_wheel
 

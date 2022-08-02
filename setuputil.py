@@ -52,10 +52,20 @@ def load_requirements():
         return list(lines)
 
 
-def do_main_import(projectname=None):
+def do_mod_import(projectname=None, fnam="__main__"):
     if projectname is None:
         projectname = find_projectname()
-    mod = importlib.import_module(f"{projectname}.__main__")
+    mod = importlib.import_module(f"{projectname}.{fnam}")
+    return mod
+
+
+def do_const_import(projectname=None):
+    mod = do_mod_import(projectname, "const")
+    return mod
+
+
+def do_main_import(projectname=None):
+    mod = do_mod_import(projectname, "__main__")
     return mod
 
 
