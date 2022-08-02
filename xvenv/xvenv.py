@@ -106,6 +106,10 @@ def vprint(*args_, **kwargs_):
     (debug or verbose) and print(*args_, **kwargs_)
 
 
+def eprint(*args_, **kwargs_):
+    print(*args_, **kwargs_, file=sys.stderr)
+
+
 #
 # def trprint():
 #     import inspect
@@ -209,7 +213,7 @@ def extrun(cmd):
 @trprint
 def no_rest_or_die(args_):
     if len(args_.rest) > 0:
-        print("unknown opts", *args_.rest)
+        eprint("unknown opts", *args_.rest)
         sys.exit(1)
 
 
@@ -246,7 +250,7 @@ def tools(args_):
     yes = "--yes" if args.remove_tool else ""
 
     if un != "" and update != "":
-        print("can't update and uninstall at the same time", file=sys.stderr)
+        eprint("can't update and uninstall at the same time")
         sys.exit(1)
 
     cmd = bashwrap(f"{args_.python} -m pip {un}install {yes} {tools} {update}")
@@ -312,7 +316,7 @@ def binst(args_):
 def or_die_with_mesg(rc, text=None):
     if rc:
         print(text if text else "ERROR", file=sys.stderr)
-        debug and print(rc, file=sys.stderr)
+        dprint(rc, file=sys.stderr)
         sys.exit(1)
 
 
@@ -364,7 +368,7 @@ def clone(args_):
     fnam = os.path.basename(__file__)
     dest = os.path.join(os.getcwd(), fnam)
     if dest == src:
-        print("same base folder", file=sys.stderr)
+        eprint("same base folder", file=sys.stderr)
         return 1
     rc = shutil.copy2(src, dest)
     return rc
@@ -390,10 +394,10 @@ def drop(args_):
             else:
                 print("aborted")
         else:
-            print("not an folder", fnam, file=sys.stderr)
+            eprint("not an folder", fnam)
             return 1
     else:
-        print("not found folder", fnam, file=sys.stderr)
+        eprint("not found folder", fnam)
         return 1
 
 
@@ -434,7 +438,7 @@ def qtest(args_):
             rc = extrun(f"{python_} -m unittest {verbose_}")
 
     if not any([args_.format, args_.lint, args_.unit_test]):
-        print("what? use --help")
+        eprint("what? use --help")
 
 
 def main_func():
@@ -686,7 +690,7 @@ def main_func():
     args.rest = rest
 
     debug = args.debug
-    debug and print("arguments", args)
+    dprint("arguments", args)
 
     keep_temp = args.keep_temp
     cwd = args.cwd
@@ -696,10 +700,10 @@ def main_func():
 
     if "func" in args:
         rc = args.func(args)
-        debug and print("result:", rc)
+        dprint("result:", rc)
         return rc
     else:
-        print("what? use --help")
+        eprint("what? use --help")
 
 
 if __name__ == "__main__":
