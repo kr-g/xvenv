@@ -5,6 +5,8 @@ project homepage:
 https://github.com/kr-g/xvenv/
 
 license:
+    free for non-commercial use
+
 https://github.com/kr-g/xvenv/blob/main/LICENSE.md
 ---
 
