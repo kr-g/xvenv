@@ -164,9 +164,9 @@ def bashwrap(cmd):
 """
     bin_activate = os.path.join(ewd, f"{VENV}/bin/activate")
     wrap = "#!/bin/bash -l \n"
-    wrap += f'cd "{cwd}" \n'
-    wrap += errfunc
     wrap += f'. "{bin_activate}" \n'
+    wrap += errfunc
+    wrap += f'cd "{cwd}" \n'
     wrap += errfunc
     wrap += f"{cmd} \n"
     wrap += errfunc
