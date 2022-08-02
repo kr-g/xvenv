@@ -11,7 +11,7 @@ this software is dual licensed, and free only for non-commercial use.
 - private license: this software is free for "non-commercial" individuals, 
  except when its installed as part of an business service, or on a device
  which is operated at a foreign site (different from individuals home place).
- (read commercial license below). GNU License below applies here.
+ do read also commercial license below. GNU License below applies here.
  
 - commercial license: all business related usage is not free of charge.
  also selling derived parts, portions, or ports (to other Platform) of this 
