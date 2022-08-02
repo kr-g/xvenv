@@ -1,6 +1,9 @@
 """
 (c) 2022 K. Goger - https://github.com/kr-g/
 
+project homepage:
+https://github.com/kr-g/xvenv/
+
 license:
 https://github.com/kr-g/xvenv/blob/main/LICENSE.md
 ---
@@ -52,9 +55,8 @@ this is different!
     python3 xvenv.py run pip list
         -> will work as expected
 
-
-a desktop starter can be created with e.g.
-python3 /somefolder/xvenv.py -cwd /otherfolder/repo/pymodule run pymodule-cmdline
+full documentation:
+https://github.com/kr-g/xvenv/
 
 """
 
