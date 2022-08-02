@@ -129,7 +129,11 @@ def trprint(func):
 
 @trprint
 def proc(args_):
-    proc = subprocess.Popen(args_, stdout=subprocess.PIPE, stderr=subprocess.STDOUT)
+    proc = subprocess.Popen(
+        args_,
+        stdout=subprocess.PIPE,
+        stderr=subprocess.STDOUT,
+    )
     dprint("proc.returncode", proc.returncode)
     if proc:
         while True:
@@ -137,6 +141,8 @@ def proc(args_):
             if len(outs) == 0:
                 break
             vprint(outs, end="")
+
+    proc.wait()
 
     dprint("done proc.returncode", proc.returncode)
 
@@ -148,11 +154,22 @@ def proc(args_):
 
 @trprint
 def bashwrap(cmd):
+    errfunc = """
+    if [ $? -gt 0 ] ;
+    then
+        echo "!!! error !!!"
+        exit 1
+    fi
+    
+"""
     bin_activate = os.path.join(ewd, f"{VENV}/bin/activate")
     wrap = "#!/bin/bash -l \n"
     wrap += f'cd "{cwd}" \n'
+    wrap += errfunc
     wrap += f'. "{bin_activate}" \n'
+    wrap += errfunc
     wrap += f"{cmd} \n"
+    wrap += errfunc
     return wrap
 
 
@@ -659,4 +676,5 @@ def main_func():
 
 
 if __name__ == "__main__":
-    main_func()
+    rc = main_func()
+    sys.exit(rc)

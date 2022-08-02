@@ -12,6 +12,7 @@ for open development tasks and limitations.
   - `-venv` specifies the venv folder, and 
   `-cwd` is working directory folder
 - pip update after ensurepip added
+- BUG fix: bash return code handling
 - 
 
 
