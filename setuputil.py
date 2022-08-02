@@ -1,3 +1,10 @@
+"""
+(c) 2022 K. Goger - https://github.com/kr-g/
+
+license:
+    free for non-commercial use
+"""
+
 import platform
 import sys
 import os
