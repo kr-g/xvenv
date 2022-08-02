@@ -2,14 +2,13 @@ from setuputil import setuptools, setup_settings, check_setup
 
 setup_settings = setup_settings()
 
-check_setup(prelude=True)
+check_setup(setup_settings, prelude=True)
 
 setuptools.setup(**setup_settings)
 
 print("build version tag", setup_settings["version"])
 
-rc = check_setup(prelude=False)
-
+rc = check_setup(setup_settings, prelude=False)
 
 # python3 -m setup sdist build bdist_wheel
 

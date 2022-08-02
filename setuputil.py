@@ -33,7 +33,7 @@ def check_changelog():
 
 def get_changelog_headers(showmax=3):
     _regex = re.compile(
-        r".*version[ ]*([\w.]*)[ -]*(.*)\n", re.MULTILINE | re.IGNORECASE
+        r"^.*version[ ]*([\w.]*)[ -]*(.*)$", re.MULTILINE | re.IGNORECASE
     )
     with open("CHANGELOG.md") as f:
         tx = f.read()
@@ -339,10 +339,17 @@ def setup_settings(base_settings=None, proj_settings=None, dump=True):
     return settings
 
 
-def check_setup(prelude=True):
+def check_setup(settings, prelude=True):
+    version = settings["version"]
     rc = check_changelog()
-    if rc and not prelude:
+    first = True
+    if not prelude:
         print("last versions found")
         for v, d in get_changelog_headers():
+            if first:
+                first = False
+                if version != v:
+                    print("***last version not matching", version, v)
+                    rc = True
             print(v, d)
     return rc
