@@ -1,26 +1,10 @@
-from setuputil import *
-import setuptools
+from setuputil import setuptools, setup_settings, check_setup
 
-#
+setup_settings = setup_settings()
 
-setuptools.setup(
-    name=projectname,
-    version=version,
-    author="k. goger",
-    author_email=f"k.r.goger+{projectname}@gmail.com",
-    url=f"https://github.com/kr-g/{projectname}",
-    packages=setuptools.find_packages(
-        exclude=[
-            "tests",
-            "docs",
-        ]
-    ),
-    python_requires=f">={pyversion}",
-    install_requires=load_requirements(),
-    entry_points=entry_points,
-)
+check_setup()
 
-print(f"using python version: {pyversion}")
+setuptools.setup(**setup_settings)
 
 
 # python3 -m setup sdist build bdist_wheel

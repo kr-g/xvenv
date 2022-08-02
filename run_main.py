@@ -1,3 +1,4 @@
-from xvenv.__main__ import main_func
+from setuputil import do_main_import
 
-main_func()
+mod = do_main_import()
+mod.main_func()
