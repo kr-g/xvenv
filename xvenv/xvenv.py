@@ -1,6 +1,10 @@
 """
 (c) 2022 K. Goger - https://github.com/kr-g/
 
+license:
+https://github.com/kr-g/xvenv/blob/main/LICENSE.md
+---
+
 xvenv automates venv handling, as well as
 starting from command line with activating
 a venv beforehand
