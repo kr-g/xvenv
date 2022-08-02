@@ -47,16 +47,22 @@ def get_changelog_headers(showmax=3):
 #
 
 
-def find_version(fnam, version="VERSION"):
+def find_versions(fnam, version="VERSION"):
     with open(fnam) as f:
         cont = f.read()
-    regex = f'{version}\s*=\s*["]([^"]+)["]'
-    match = re.search(regex, cont)
+    regex = f"^(?=[^#]).*({version})[ ]*=[ ]*((?P<qou>[\"'])(.*)(?P=qou))$"
+    match = re.finditer(regex, cont, re.MULTILINE | re.IGNORECASE)
     if match is None:
-        raise Exception(
-            f"version with spec={version} not found, use double quotes for version string"
-        )
-    return match.group(1)
+        raise Exception(f"version with spec={version} not found")
+    for m in match:
+        fuls = m.group(2)
+        qou = m.group(3)
+        version = m.group(4)
+        yield version, fuls, qou
+
+
+def find_version(fnam, version="VERSION"):
+    return next(find_versions(fnam, version))[0]
 
 
 def find_projectname():
