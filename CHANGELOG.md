@@ -13,6 +13,7 @@ for open development tasks and limitations.
   `-cwd` is working directory folder
 - pip update after ensurepip added
 - BUG fix: bash return code handling
+- `tools` uninstall
 - 
 
 

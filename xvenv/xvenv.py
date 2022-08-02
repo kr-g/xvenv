@@ -236,7 +236,14 @@ def tools(args_):
 
     tools = " ".join(args_.tool)
     update = "-U" if args.update_deps else ""
-    cmd = bashwrap(f"{args_.python} -m pip install {tools} {update}")
+    un = "un" if args.remove_tool else ""
+    yes = "--yes" if args.remove_tool else ""
+
+    if un != "" and update != "":
+        print("can't update and uninstall at the same time", file=sys.stderr)
+        sys.exit(1)
+
+    cmd = bashwrap(f"{args_.python} -m pip {un}install {yes} {tools} {update}")
     rc = extrun(cmd)
     return rc
 
@@ -512,6 +519,13 @@ def main_func():
         help="update deps (default: %(default)s)",
     )
     tools_parser.add_argument(
+        "--remove-tool",
+        "-R",
+        action="store_true",
+        default=False,
+        help="remove tool (default: %(default)s)",
+    )
+    tools_parser.add_argument(
         "-tool",
         nargs="*",
         action="store",
@@ -585,6 +599,13 @@ def main_func():
         action="store_true",
         default=False,
         help="update deps (default: %(default)s)",
+    )
+    make_parser.add_argument(
+        "--remove-tool",
+        "-R",
+        action="store_true",
+        default=False,
+        help="remove tool (default: %(default)s)",
     )
     make_parser.add_argument(
         "-tool",

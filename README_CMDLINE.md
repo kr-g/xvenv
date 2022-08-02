@@ -68,12 +68,13 @@ run `xvenv pip -h` for help
 
 run `xvenv tools -h` for help
 
-    usage: python3 -m xvenv [options] tools [-h] [--update-deps]
+    usage: python3 -m xvenv [options] tools [-h] [--update-deps] [--remove-tool]
                                             [-tool [TOOL [TOOL ...]]]
     
     optional arguments:
       -h, --help            show this help message and exit
       --update-deps, -u     update deps (default: False)
+      --remove-tool, -R     remove tool (default: False)
       -tool [TOOL [TOOL ...]]
                             tool to install (default: ['setuptools', 'twine',
                             'wheel', 'black', 'flake8'])
@@ -126,7 +127,7 @@ run `xvenv binst -h` for help
 run `xvenv make -h` for help
 
     usage: python3 -m xvenv [options] make [-h] [--quick] [--clear] [--copy]
-                                           [--update-deps]
+                                           [--update-deps] [--remove-tool]
                                            [-tool [TOOL [TOOL ...]]]
                                            [--build-clean]
     
@@ -137,6 +138,7 @@ run `xvenv make -h` for help
       --clear, -c           clear before setup (default: False)
       --copy, -cp           use copy instead of symlink (default: False)
       --update-deps, -u     update deps (default: False)
+      --remove-tool, -R     remove tool (default: False)
       -tool [TOOL [TOOL ...]]
                             tool to install (default: ['setuptools', 'twine',
                             'wheel', 'black', 'flake8'])
