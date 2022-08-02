@@ -151,6 +151,7 @@ def project_settings(projectname=None, fnam="const.py", version="VERSION"):
         "pyversion": pyversion,
         "file": file,
         "setuptoolsversion": setuptools.__version__,
+        "version": version,
         "setup": {
             "name": projectname,
             "version": version,
