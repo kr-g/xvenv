@@ -168,6 +168,20 @@ assuming a `venv` with default tools setup
 (* `-venv` is new in version v0.0.3, but with absoulte path for black it works in v.0.0.2)
 
 
+# xvenv run COMMAND with `-cwd` and `-venv` explained
+
+the execution with options `-cwd` and `-venv` is equivalent to:
+
+    # activate venv 
+    source "$VENV/bin/activate"
+    
+    # cd into working folder
+    cd "$CWD"
+    
+    # execute the command
+    $COMMAND
+
+
 # all cmd-line opts
 
 all cmd-line opts are described here 
