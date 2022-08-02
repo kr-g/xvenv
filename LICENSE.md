@@ -21,8 +21,8 @@ this software is dual licensed, and free only for non-commercial use.
  using in-house, or as part of a ASP service falls under this section.
  individual users like freelancers, or doing other kind of business 
  falls under this section.
- a device operated at a foreign site (different from individuals home place) 
- falls under this section.
+ this software installed on a device operated at a foreign site 
+ (different from individuals home place) falls under this section.
  NGOs, Universities, and other organizations falls under this section.
  for evaluation purposes a free 30 days period is granted.
  
