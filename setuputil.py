@@ -22,6 +22,19 @@ def check_changelog():
             return True
 
 
+def get_changelog_headers(showmax=3):
+    _regex = re.compile(
+        r".*version[ ]*([\w.]*)[ -]*(.*)\n", re.MULTILINE | re.IGNORECASE
+    )
+    with open("CHANGELOG.md") as f:
+        tx = f.read()
+        for m in re.finditer(_regex, tx):
+            yield m.group(1), m.group(2)
+            showmax -= 1
+            if showmax <= 0:
+                return
+
+
 #
 
 
@@ -188,6 +201,10 @@ def setup_settings(base_settings=None, proj_settings=None, dump=True):
     return settings
 
 
-def check_setup():
+def check_setup(prelude=True):
     rc = check_changelog()
+    if rc and not prelude:
+        print("last versions found")
+        for v, d in get_changelog_headers():
+            print(v, d)
     return rc
