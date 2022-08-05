@@ -11,10 +11,11 @@ run `xvenv -h` for help
     venv mangement and builder tool
     
     positional arguments:
-      {setup,pip,tools,clean,build,install,binst,make,run,test,clone,drop,qtest}
+      {setup,pip,req,tools,clean,build,install,binst,make,run,test,clone,drop,qtest}
                             sub-command --help
         setup               setup a venv in folder '.venv'
         pip                 install pip
+        req                 install requirements.txt if present
         tools               install tools
         clean               clean all build related folders
         build               build with setuptools. like calling setup sdist build
@@ -63,6 +64,20 @@ run `xvenv pip -h` for help
     
     optional arguments:
       -h, --help  show this help message and exit
+
+
+## xvenv req
+
+run `xvenv req -h` for help
+
+    usage: python3 -m xvenv [options] req [-h] [--no-req-update] [--update-req]
+    
+    optional arguments:
+      -h, --help            show this help message and exit
+      --no-req-update, -norequp, -nru
+                            do not update requirements (default: False)
+      --update-req, -ureq, -ur
+                            update requirements (default: False)
 
 
 ## xvenv tools
@@ -128,7 +143,8 @@ run `xvenv binst -h` for help
 run `xvenv make -h` for help
 
     usage: python3 -m xvenv [options] make [-h] [--quick] [--clear] [--copy]
-                                           [--update-deps] [--remove-tool]
+                                           [--update-deps] [--no-req-update]
+                                           [--update-req] [--remove-tool]
                                            [-tool [TOOL [TOOL ...]]]
                                            [--build-clean]
     
@@ -139,6 +155,10 @@ run `xvenv make -h` for help
       --clear, -c           clear before setup (default: False)
       --copy, -cp           use copy instead of symlink (default: False)
       --update-deps, -u     update deps (default: False)
+      --no-req-update, -norequp, -nru
+                            do not update requirements (default: False)
+      --update-req, -ureq, -ur
+                            update requirements (default: False)
       --remove-tool, -R     remove tool (default: False)
       -tool [TOOL [TOOL ...]]
                             tool to install (default: ['setuptools', 'twine',

@@ -14,6 +14,7 @@ for open development tasks and limitations.
 - pip update after ensurepip added
 - BUG fix: bash return code handling
 - `tools` uninstall option
+- `req` sub-cmd for handling requirements.txt installation
 - 
 
 

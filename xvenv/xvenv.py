@@ -247,6 +247,20 @@ def pip(args_):
     return rc
 
 
+@trprint
+def req(args_):
+    no_rest_or_die(args_)
+    
+    if args_.no_req_update:
+        return
+    
+    UPDATE = "-U" if args_.update_req else ""
+    if os.path.exists( "requirements.txt" ):
+        cmd = bashwrap(f"{args_.python} -m pip install -r requirements.txt {UPDATE}")
+        rc = extrun(cmd)
+        return rc
+
+
 def tools(args_):
     no_rest_or_die(args_)
 
@@ -335,6 +349,7 @@ def make(args_):
     or_die_with_mesg(setup(args_), "setup failed")
     or_die_with_mesg(pip(args_), "pip failed")
     or_die_with_mesg(tools(args_), "tools failed")
+    or_die_with_mesg(req(args_), "req failed")
 
     if args.quick:
         return
@@ -531,6 +546,25 @@ def main_func():
     pip_parser = subparsers.add_parser("pip", help="install pip")
     pip_parser.set_defaults(func=pip)
 
+    req_parser = subparsers.add_parser("req", help="install requirements.txt if present")
+    req_parser.set_defaults(func=req)
+    req_parser.add_argument(
+        "--no-req-update",
+        "-norequp",
+        "-nru",
+        action="store_true",
+        default=False,
+        help="do not update requirements (default: %(default)s)",
+    )
+    req_parser.add_argument(
+        "--update-req",
+        "-ureq",
+        "-ur",
+        action="store_true",
+        default=False,
+        help="update requirements (default: %(default)s)",
+    )
+
     tools_parser = subparsers.add_parser("tools", help="install tools")
     tools_parser.set_defaults(func=tools)
     tools_parser.add_argument(
@@ -621,6 +655,22 @@ def main_func():
         action="store_true",
         default=False,
         help="update deps (default: %(default)s)",
+    )
+    make_parser.add_argument(
+        "--no-req-update",
+        "-norequp",
+        "-nru",
+        action="store_true",
+        default=False,
+        help="do not update requirements (default: %(default)s)",
+    )
+    make_parser.add_argument(
+        "--update-req",
+        "-ureq",
+        "-ur",
+        action="store_true",
+        default=False,
+        help="update requirements (default: %(default)s)",
     )
     make_parser.add_argument(
         "--remove-tool",
