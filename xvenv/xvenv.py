@@ -250,12 +250,12 @@ def pip(args_):
 @trprint
 def req(args_):
     no_rest_or_die(args_)
-    
+
     if args_.no_req_update:
         return
-    
+
     UPDATE = "-U" if args_.update_req else ""
-    if os.path.exists( "requirements.txt" ):
+    if os.path.exists("requirements.txt"):
         cmd = bashwrap(f"{args_.python} -m pip install -r requirements.txt {UPDATE}")
         rc = extrun(cmd)
         return rc
@@ -546,7 +546,9 @@ def main_func():
     pip_parser = subparsers.add_parser("pip", help="install pip")
     pip_parser.set_defaults(func=pip)
 
-    req_parser = subparsers.add_parser("req", help="install requirements.txt if present")
+    req_parser = subparsers.add_parser(
+        "req", help="install requirements.txt if present"
+    )
     req_parser.set_defaults(func=req)
     req_parser.add_argument(
         "--no-req-update",

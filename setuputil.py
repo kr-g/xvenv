@@ -177,6 +177,11 @@ def project_settings(projectname=None, fnam="const.py", version="VERSION"):
     return rc
 
 
+#
+# https://setuptools.pypa.io/en/latest/userguide/declarative_config.html
+#
+
+
 def replace_settings(project_settings, base_settings):
     """replace base setting generics from project settings"""
     base_settings = dict(base_settings)
