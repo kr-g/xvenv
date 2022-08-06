@@ -203,6 +203,7 @@ def elements_iter(adict, keypath=[]):
 def replace_settings(project_settings, base_settings):
     """replace base setting generics from project settings"""
     base_settings = dict(base_settings)
+    # not the most effective way ...
     for k, v in project_settings.items():
         for kk, vv, setr in elements_iter(base_settings):
             if type(vv) != str:
