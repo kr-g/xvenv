@@ -213,6 +213,15 @@ Contributiors are welcome to helping with Windows and Mac !!!
 
 alpha, the interface/ workflow might change without prior notice
 
+
+# further readings
+
+there are also some other tools available addressing somehow the 
+same topic but with a different scope of functionality.
+
+- [pipenv](https://github.com/pypa/pipenv)
+- [hatch](https://github.com/pypa/hatch)
+
     
 # license
 
