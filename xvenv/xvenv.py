@@ -659,6 +659,13 @@ def main_func():
         default=False,
         help="clean all build related folders (default: %(default)s)",
     )
+    binst_parser.add_argument(
+        "--build-clean-only",
+        "-bcl",
+        action="store_true",
+        default=False,
+        help="clean all build related folders, but don't start build (default: %(default)s)",
+    )
 
     make_parser = subparsers.add_parser(
         "make", help="sets up a venv and installs everything"
@@ -729,6 +736,13 @@ def main_func():
         action="store_true",
         default=False,
         help="clean all build related folders (default: %(default)s)",
+    )
+    make_parser.add_argument(
+        "--build-clean-only",
+        "-bcl",
+        action="store_true",
+        default=False,
+        help="clean all build related folders, but don't start build (default: %(default)s)",
     )
 
     run_parser = subparsers.add_parser("run", help="run a command")
