@@ -11,7 +11,7 @@ run `xvenv -h` for help
     venv mangement and builder tool
     
     positional arguments:
-      {setup,pip,req,tools,clean,build,install,binst,make,run,test,clone,drop,qtest}
+      {setup,pip,req,tools,clean,build,install,pypi,binst,make,run,test,clone,drop,qtest}
                             sub-command --help
         setup               setup a venv in folder '.venv'
         pip                 install pip
@@ -21,6 +21,8 @@ run `xvenv -h` for help
         build               build with setuptools. like calling setup sdist build
                             bdist_wheel
         install             pip install editabe in venv
+        pypi                pypi helper. just prints some helping information for
+                            using with twine
         binst               build and install
         make                sets up a venv and installs everything
         run                 run a command
@@ -122,6 +124,16 @@ run `xvenv build -h` for help
 run `xvenv install -h` for help
 
     usage: python3 -m xvenv [options] install [-h]
+    
+    optional arguments:
+      -h, --help  show this help message and exit
+
+
+## xvenv pypi
+
+run `xvenv pypi -h` for help
+
+    usage: python3 -m xvenv [options] pypi [-h]
     
     optional arguments:
       -h, --help  show this help message and exit

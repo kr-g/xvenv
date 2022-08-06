@@ -15,6 +15,7 @@ for open development tasks and limitations.
 - BUG fix: bash return code handling
 - `tools` uninstall option
 - `req` sub-cmd for handling requirements.txt installation
+- `pypi` sub-cmd for printing helping information (just for copy&paste as of now)
 - 
 
 

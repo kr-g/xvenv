@@ -7,7 +7,9 @@ for latest ongoing, or upcoming news.
 # BACKLOG
 
 - microsoft windows support
-- 
+- twine upload 
+  - handling with credit file ...
+-
 
 
 # OPEN ISSUES

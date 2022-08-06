@@ -327,6 +327,25 @@ def install(args_):
 
 
 @trprint
+def pypi(args_):
+    """
+    this prints only the standard cmd-lines as sort of helpers.
+    probably in a next step there will be an integration
+    with credits files, or entering user/password for twine
+    """
+    proj_name = os.path.basename(os.getcwd())
+    print(
+        f"""
+twine upload --repository testpypi dist/*
+python3 -m pip install --index-url https://test.pypi.org/simple/ --extra-index-url https://pypi.org/simple/ {proj_name}
+
+twine upload dist/*
+"""
+    )
+    return
+
+
+@trprint
 def binst(args_):
     or_die_with_mesg(build(args_), "build failed")
     or_die_with_mesg(install(args_), "install failed")
@@ -614,6 +633,12 @@ def main_func():
         "install", help="pip install editabe in venv"
     )
     install_parser.set_defaults(func=install)
+
+    pypi_parser = subparsers.add_parser(
+        "pypi",
+        help="pypi helper. just prints some helping information for using with twine",
+    )
+    pypi_parser.set_defaults(func=pypi)
 
     binst_parser = subparsers.add_parser("binst", help="build and install")
     binst_parser.set_defaults(func=binst)
