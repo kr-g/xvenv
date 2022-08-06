@@ -14,7 +14,6 @@ import json
 import subprocess
 
 import setuptools
-import distutils
 
 #
 
