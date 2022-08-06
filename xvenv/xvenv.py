@@ -307,8 +307,11 @@ def build(args_):
 
     with VerboseOn():
         print("building...")
-        if args_.build_clean:
+        if args_.build_clean or args_.build_clean_only:
             or_die_with_mesg(clean(args_), "build clean failed")
+
+        if args_.build_clean_only:
+            return
 
         cmd = bashwrap(f"{args_.python} -m setup sdist build bdist_wheel")
         rc = extrun(cmd)
@@ -627,6 +630,13 @@ def main_func():
         action="store_true",
         default=False,
         help="clean all build related folders (default: %(default)s)",
+    )
+    build_parser.add_argument(
+        "--build-clean-only",
+        "-bcl",
+        action="store_true",
+        default=False,
+        help="clean all build related folders, but don't start build (default: %(default)s)",
     )
 
     install_parser = subparsers.add_parser(

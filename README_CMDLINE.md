@@ -113,10 +113,14 @@ run `xvenv clean -h` for help
 run `xvenv build -h` for help
 
     usage: python3 -m xvenv [options] build [-h] [--build-clean]
+                                            [--build-clean-only]
     
     optional arguments:
       -h, --help            show this help message and exit
       --build-clean, -bclr  clean all build related folders (default: False)
+      --build-clean-only, -bcl
+                            clean all build related folders, but don't start build
+                            (default: False)
 
 
 ## xvenv install
