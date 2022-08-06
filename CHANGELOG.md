@@ -18,6 +18,7 @@ for open development tasks and limitations.
 - `pypi` sub-cmd for printing helping information (just for copy&paste as of now)
 - `build` clean only for wiping build related folders without starting the building process
 - fix in cdvenv
+- added run freeze scripts
 - 
 
 
