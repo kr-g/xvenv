@@ -6,7 +6,7 @@ for open development tasks and limitations.
 # CHANGELOG
 
 
-## version v0.0.3 - ???
+## version v0.0.3 - 20220806
 
 - `-venv` cmd-line parameter in addition to `-cwd` parameter
   - `-venv` specifies the venv folder, and 
