@@ -176,9 +176,10 @@ def bashwrap(cmd):
     
 """
     bin_activate = os.path.join(ewd, f"{VENV}/bin/activate")
+
     wrap = "#!/bin/bash -l \n"
     if cdvenv:
-        wrap += f'cd "{bin_activate}" \n'
+        wrap += f'cd "{ewd}" \n'
         wrap += errfunc
     wrap += f'. "{bin_activate}" \n'
     wrap += errfunc
@@ -808,6 +809,7 @@ def main_func():
     keep_temp = args.keep_temp
     cwd = args.cwd
     ewd = args.ewd
+    cdvenv = args.cdvenv
 
     verbose = args.verbose
 

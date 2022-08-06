@@ -148,10 +148,14 @@ run `xvenv pypi -h` for help
 run `xvenv binst -h` for help
 
     usage: python3 -m xvenv [options] binst [-h] [--build-clean]
+                                            [--build-clean-only]
     
     optional arguments:
       -h, --help            show this help message and exit
       --build-clean, -bclr  clean all build related folders (default: False)
+      --build-clean-only, -bcl
+                            clean all build related folders, but don't start build
+                            (default: False)
 
 
 ## xvenv make
@@ -162,7 +166,7 @@ run `xvenv make -h` for help
                                            [--update-deps] [--no-req-update]
                                            [--update-req] [--remove-tool]
                                            [-tool [TOOL [TOOL ...]]]
-                                           [--build-clean]
+                                           [--build-clean] [--build-clean-only]
     
     optional arguments:
       -h, --help            show this help message and exit
@@ -180,6 +184,9 @@ run `xvenv make -h` for help
                             tool to install (default: ['setuptools', 'twine',
                             'wheel', 'black', 'flake8'])
       --build-clean, -bclr  clean all build related folders (default: False)
+      --build-clean-only, -bcl
+                            clean all build related folders, but don't start build
+                            (default: False)
 
 
 ## xvenv run
