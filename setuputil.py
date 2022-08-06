@@ -182,18 +182,32 @@ def project_settings(projectname=None, fnam="const.py", version="VERSION"):
 #
 
 
+def elements_iter(adict):
+    """deep elements iterator"""
+    _iter = lambda x: x.items()
+    if type(adict) == list:
+        _iter = enumerate
+
+    for k, v in _iter(adict):
+        if type(v) in [list, dict]:
+            yield from elements_iter(v)
+            continue
+
+        def setr(nv):
+            adict[k] = nv
+
+        yield k, v, setr
+
+
 def replace_settings(project_settings, base_settings):
     """replace base setting generics from project settings"""
     base_settings = dict(base_settings)
     for k, v in project_settings.items():
-        if type(v) != str:
-            continue
-        for kk, vv in base_settings.items():
-            if type(vv) != str:
-                continue
+        for _, vv, setr in elements_iter(base_settings):
             r = "{" + k + "}"
             if vv.find(r) >= 0:
-                base_settings[kk] = vv.replace(r, v)
+                setr(vv.replace(r, v))
+
     return base_settings
 
 
