@@ -152,6 +152,10 @@ or
     xvenv tools -tool *pack1* *pack2* ... -u
         -> to update the tools packages
   
+or alternative
+
+    xvenv run pip install *pack1* *pack2* ... -U
+  
 to install more packages into the venv
 
 
