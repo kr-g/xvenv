@@ -298,8 +298,7 @@ class AutoDoc(object):
             cmd_ = cmd.replace(" ", "_").replace("-", "")
 
             self.pr("")
-            self.pr(f"[{idx}]:")
-            self.pr(f"## {cmd}")
+            self.pr(f"[{idx}]:## {cmd}")
             self.pr("")
             self.pr(f"run `{cmd} -h` for help")
             self.pr("")

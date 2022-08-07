@@ -20,8 +20,7 @@ index:
   - [qtest][15]
 
 
-[0]:
-## xvenv
+[0]:## xvenv
 
 run `xvenv -h` for help
 
@@ -65,8 +64,7 @@ run `xvenv -h` for help
     for more information refer to https://github.com/kr-g/xvenv
 
 
-[1]:
-## xvenv setup
+[1]:## xvenv setup
 
 run `xvenv setup -h` for help
 
@@ -78,8 +76,7 @@ run `xvenv setup -h` for help
       --copy, -cp  use copy instead of symlink (default: False)
 
 
-[2]:
-## xvenv pip
+[2]:## xvenv pip
 
 run `xvenv pip -h` for help
 
@@ -89,8 +86,7 @@ run `xvenv pip -h` for help
       -h, --help  show this help message and exit
 
 
-[3]:
-## xvenv req
+[3]:## xvenv req
 
 run `xvenv req -h` for help
 
@@ -104,8 +100,7 @@ run `xvenv req -h` for help
                             update requirements (default: False)
 
 
-[4]:
-## xvenv tools
+[4]:## xvenv tools
 
 run `xvenv tools -h` for help
 
@@ -121,8 +116,7 @@ run `xvenv tools -h` for help
                             'wheel', 'black', 'flake8'])
 
 
-[5]:
-## xvenv clean
+[5]:## xvenv clean
 
 run `xvenv clean -h` for help
 
@@ -132,8 +126,7 @@ run `xvenv clean -h` for help
       -h, --help  show this help message and exit
 
 
-[6]:
-## xvenv build
+[6]:## xvenv build
 
 run `xvenv build -h` for help
 
@@ -148,8 +141,7 @@ run `xvenv build -h` for help
                             (default: False)
 
 
-[7]:
-## xvenv install
+[7]:## xvenv install
 
 run `xvenv install -h` for help
 
@@ -159,8 +151,7 @@ run `xvenv install -h` for help
       -h, --help  show this help message and exit
 
 
-[8]:
-## xvenv pypi
+[8]:## xvenv pypi
 
 run `xvenv pypi -h` for help
 
@@ -170,8 +161,7 @@ run `xvenv pypi -h` for help
       -h, --help  show this help message and exit
 
 
-[9]:
-## xvenv binst
+[9]:## xvenv binst
 
 run `xvenv binst -h` for help
 
@@ -186,8 +176,7 @@ run `xvenv binst -h` for help
                             (default: False)
 
 
-[10]:
-## xvenv make
+[10]:## xvenv make
 
 run `xvenv make -h` for help
 
@@ -218,8 +207,7 @@ run `xvenv make -h` for help
                             (default: False)
 
 
-[11]:
-## xvenv run
+[11]:## xvenv run
 
 run `xvenv run -h` for help
 
@@ -229,8 +217,7 @@ run `xvenv run -h` for help
       -h, --help  show this help message and exit
 
 
-[12]:
-## xvenv test
+[12]:## xvenv test
 
 run `xvenv test -h` for help
 
@@ -240,8 +227,7 @@ run `xvenv test -h` for help
       -h, --help  show this help message and exit
 
 
-[13]:
-## xvenv clone
+[13]:## xvenv clone
 
 run `xvenv clone -h` for help
 
@@ -251,8 +237,7 @@ run `xvenv clone -h` for help
       -h, --help  show this help message and exit
 
 
-[14]:
-## xvenv drop
+[14]:## xvenv drop
 
 run `xvenv drop -h` for help
 
@@ -262,8 +247,7 @@ run `xvenv drop -h` for help
       -h, --help  show this help message and exit
 
 
-[15]:
-## xvenv qtest
+[15]:## xvenv qtest
 
 run `xvenv qtest -h` for help
 
