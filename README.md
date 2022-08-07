@@ -123,6 +123,19 @@ what will call `setup sdist build bdist_wheel` internally,
 followed by `pip install -e`.
 
 
+# single steps vs make 
+
+|step|make -q|make|
+|---|---|---|
+|setup|X|X|
+|pip|X|X|
+|tools|X|X|
+|req|X|X|
+|test||X|
+|build||X|
+|install||X|
+
+
 # more packages ?
 
 run 
