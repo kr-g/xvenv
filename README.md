@@ -125,6 +125,8 @@ followed by `pip install -e`.
 
 # single steps vs make 
 
+following the matrix showing how single steps and make are covered
+
 |step|make -q|make|
 |---|---|---|
 |setup|X|X|
