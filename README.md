@@ -74,7 +74,7 @@ run
 
     xvenv setup
     xvenv pip
-    xvenv tools 
+    xvenv tools   # this will install setuptools, twine, wheel, black, flake8 
     xvenv build  
     xvenv setup
    
