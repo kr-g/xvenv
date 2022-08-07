@@ -367,6 +367,9 @@ def load_installed_versions():
         stdout=subprocess.PIPE,
     )
 
+    if proc is None:
+        raise Exception("could not start pip")
+
     while True:
         line = proc.stdout.readline()
         if len(line) == 0:
@@ -413,7 +416,7 @@ def bump_versions(req_cleared, packs, strong=False):
         pack = packs[p]
         if pack.version is None:
             new_req.append(f"{pack.package}")
-            debug and print(new_req[-1:], "from editable", file=sys.stderr)
+            print(new_req[-1:], "from editable", file=sys.stderr)
         else:
             new_req.append(f"{pack.package}{cmp}{pack.version}")
 
