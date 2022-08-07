@@ -123,20 +123,20 @@ what will call `setup sdist build bdist_wheel` internally,
 followed by `pip install -e`.
 
 
-# single steps vs make 
+# single steps vs make and binst
 
-following the matrix showing how single steps and make are related.
+following the matrix showing how single steps and the combined tools (make and binst) are related.
 
 
-|step|make --quick|make|
-|---|---|---|
-|setup|X|X|
-|pip|X|X|
-|tools|X|X|
-|req|X|X|
-|test||X|
-|build||X|
-|install||X|
+|step|make --quick|make|binst|
+|---|---|---|---|
+|setup|X|X||
+|pip|X|X||
+|tools|X|X||
+|req|X|X||
+|test||X||
+|build||X|X|
+|install||X|X|
 
 see also all cmd-line opts here: [`README_CMDLINE`](./README_CMDLINE.md)
 
