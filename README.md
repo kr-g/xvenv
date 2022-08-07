@@ -128,15 +128,15 @@ followed by `pip install -e`.
 following the matrix showing how single steps and the combined tools (make and binst) are related.
 
 
-|step|make --quick|make|binst|remark|
-|---|---|---|---|---|
-|setup|X|X|||
-|pip|X|X|||
-|tools|X|X|||
-|req|X|X|||
-|test||X||not executed with make quick or binst|
-|build||X|X||
-|install||X|X||
+||step|make --quick|make|binst|remark|
+|---|---|---|---|---|---|
+|1|setup|X|X|||
+|2|pip|X|X|||
+|3|tools|X|X|||
+|4|req|X|X|||
+|5|test||X||not executed with make quick or binst|
+|6|build||X|X||
+|7|install||X|X||
 
 see also all cmd-line opts here: [`README_CMDLINE`](./README_CMDLINE.md)
 
