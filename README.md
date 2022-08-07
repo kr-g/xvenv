@@ -128,7 +128,7 @@ followed by `pip install -e`.
 following the matrix showing how single steps and make are related.
 
 
-|step|make -q|make|
+|step|make --quick|make|
 |---|---|---|
 |setup|X|X|
 |pip|X|X|
