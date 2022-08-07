@@ -278,10 +278,12 @@ class AutoDoc(object):
 
         self.pr("index:")
 
-        links = list(scancmd)
-        links[0] = self.cmd_tool
-        for idx, ln in enumerate(links):
-            self.pr(f"  - [{links[idx]}][{idx}]")
+        for idx, cmd in enumerate(scancmd):
+            if idx > 0:
+                cmd_ = "-".join([self.cmd_tool, cmd]).strip()
+            else:
+                cmd_ = self.cmd_tool
+            self.pr(f"  - [{cmd_}](./#{cmd_})")
 
         self.pr()
 
@@ -298,7 +300,7 @@ class AutoDoc(object):
             cmd_ = cmd.replace(" ", "_").replace("-", "")
 
             self.pr("")
-            self.pr(f"[{idx}]:## {cmd}")
+            self.pr(f"## {cmd}")
             self.pr("")
             self.pr(f"run `{cmd} -h` for help")
             self.pr("")
