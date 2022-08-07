@@ -134,7 +134,7 @@ following the matrix showing how single steps and the combined tools (make and b
 |pip|X|X|||
 |tools|X|X|||
 |req|X|X|||
-|test||X||* during development it is not required to test the venv again|
+|test||X||not executed with make quick or binst|
 |build||X|X||
 |install||X|X||
 
