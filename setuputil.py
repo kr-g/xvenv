@@ -251,7 +251,7 @@ class AutoDoc(object):
             d = "\t"
         self._doc += "\n"
 
-    def create(self):
+    def create(self, create_index=True):
 
         self.rst()
 
@@ -276,18 +276,20 @@ class AutoDoc(object):
 
         print("found", scancmd)
 
-        self.pr("index:")
+        if create_index:
+            self.pr("index:")
 
-        fnam = self.build_fnam()
+            fnam = self.build_fnam()
 
-        for idx, cmd in enumerate(scancmd):
-            if idx > 0:
-                cmd_ = "-".join([self.cmd_tool, cmd]).strip()
-            else:
-                cmd_ = self.cmd_tool
-            self.pr(f"  - [{cmd_}](./{fnam}#{cmd_})")
+            for idx, cmd in enumerate(scancmd):
+                if idx > 0:
+                    cmd_ = "-".join([self.cmd_tool, cmd]).strip()
+                else:
+                    cmd_ = self.cmd_tool
+                # this works only with github
+                self.pr(f"  - [{cmd_}](./{fnam}#{cmd_})")
 
-        self.pr()
+            self.pr()
 
         for idx, cmd in enumerate(scancmd):
 
