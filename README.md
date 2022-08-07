@@ -104,6 +104,10 @@ or
     xvenv tools -u
         -> to update the tools packages
 
+or just as single command
+
+    xvenv make -q -u 
+
 what will create the venv, then install pip, setuptools, twine, black, and flake8 
     
 as soon the build is ready, test with
