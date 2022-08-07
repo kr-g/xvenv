@@ -128,15 +128,15 @@ followed by `pip install -e`.
 following the matrix showing how single steps and the combined tools (make and binst) are related.
 
 
-|step|make --quick|make|binst|
-|---|---|---|---|
-|setup|X|X||
-|pip|X|X||
-|tools|X|X||
-|req|X|X||
-|test||X||
-|build||X|X|
-|install||X|X|
+|step|make --quick|make|binst|remark|
+|---|---|---|---|---|
+|setup|X|X|||
+|pip|X|X|||
+|tools|X|X|||
+|req|X|X|||
+|test||X||* during development it is not required to test the venv again|
+|build||X|X||
+|install||X|X||
 
 see also all cmd-line opts here: [`README_CMDLINE`](./README_CMDLINE.md)
 
