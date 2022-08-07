@@ -7,4 +7,3 @@ os.chdir(cwd)
 
 mod = do_main_import()
 mod.main_func()
-
