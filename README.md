@@ -114,7 +114,11 @@ as soon the build is ready, test with
 
     xvenv build
     xvenv install
-    
+
+or just as single command
+
+    xvenv binst
+
 what will call `setup sdist build bdist_wheel` internally,
 followed by `pip install -e`.
 
