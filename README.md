@@ -125,7 +125,8 @@ followed by `pip install -e`.
 
 # single steps vs make 
 
-following the matrix showing how single steps and make are related
+following the matrix showing how single steps and make are related.
+
 
 |step|make -q|make|
 |---|---|---|
@@ -136,6 +137,8 @@ following the matrix showing how single steps and make are related
 |test||X|
 |build||X|
 |install||X|
+
+see also all cmd-line opts here: [`README_CMDLINE`](./README_CMDLINE.md)
 
 
 # more packages ?
