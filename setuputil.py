@@ -251,7 +251,7 @@ class AutoDoc(object):
             d = "\t"
         self._doc += "\n"
 
-    def create(self, create_index=True):
+    def create(self, create_index=False):
 
         self.rst()
 
