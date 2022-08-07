@@ -2,22 +2,22 @@
 # all `xvenv` cmd-line options
 
 index:
-  - [xvenv](./#xvenv)
-  - [xvenv-setup](./#xvenv-setup)
-  - [xvenv-pip](./#xvenv-pip)
-  - [xvenv-req](./#xvenv-req)
-  - [xvenv-tools](./#xvenv-tools)
-  - [xvenv-clean](./#xvenv-clean)
-  - [xvenv-build](./#xvenv-build)
-  - [xvenv-install](./#xvenv-install)
-  - [xvenv-pypi](./#xvenv-pypi)
-  - [xvenv-binst](./#xvenv-binst)
-  - [xvenv-make](./#xvenv-make)
-  - [xvenv-run](./#xvenv-run)
-  - [xvenv-test](./#xvenv-test)
-  - [xvenv-clone](./#xvenv-clone)
-  - [xvenv-drop](./#xvenv-drop)
-  - [xvenv-qtest](./#xvenv-qtest)
+  - [xvenv](./README_CMDLINE.md#xvenv)
+  - [xvenv-setup](./README_CMDLINE.md#xvenv-setup)
+  - [xvenv-pip](./README_CMDLINE.md#xvenv-pip)
+  - [xvenv-req](./README_CMDLINE.md#xvenv-req)
+  - [xvenv-tools](./README_CMDLINE.md#xvenv-tools)
+  - [xvenv-clean](./README_CMDLINE.md#xvenv-clean)
+  - [xvenv-build](./README_CMDLINE.md#xvenv-build)
+  - [xvenv-install](./README_CMDLINE.md#xvenv-install)
+  - [xvenv-pypi](./README_CMDLINE.md#xvenv-pypi)
+  - [xvenv-binst](./README_CMDLINE.md#xvenv-binst)
+  - [xvenv-make](./README_CMDLINE.md#xvenv-make)
+  - [xvenv-run](./README_CMDLINE.md#xvenv-run)
+  - [xvenv-test](./README_CMDLINE.md#xvenv-test)
+  - [xvenv-clone](./README_CMDLINE.md#xvenv-clone)
+  - [xvenv-drop](./README_CMDLINE.md#xvenv-drop)
+  - [xvenv-qtest](./README_CMDLINE.md#xvenv-qtest)
 
 
 ## xvenv

@@ -278,12 +278,14 @@ class AutoDoc(object):
 
         self.pr("index:")
 
+        fnam = self.build_fnam()
+
         for idx, cmd in enumerate(scancmd):
             if idx > 0:
                 cmd_ = "-".join([self.cmd_tool, cmd]).strip()
             else:
                 cmd_ = self.cmd_tool
-            self.pr(f"  - [{cmd_}](./#{cmd_})")
+            self.pr(f"  - [{cmd_}](./{fnam}#{cmd_})")
 
         self.pr()
 
@@ -313,8 +315,11 @@ class AutoDoc(object):
 
         return self
 
+    def build_fnam(self):
+        return f"README{self.extreadme}CMDLINE.md"
+
     def write(self):
-        with open(f"README{self.extreadme}CMDLINE.md", "w") as f:
+        with open(self.build_fnam(), "w") as f:
             f.write(self._doc)
 
     def create_autodoc(self):
