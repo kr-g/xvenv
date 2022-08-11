@@ -75,8 +75,9 @@ run
     xvenv setup
     xvenv pip
     xvenv tools   # this will install setuptools, twine, wheel, black, flake8 
+    xvenv req     # this will install requirements.txt with pip  
     xvenv build  
-    xvenv setup
+    xvenv install
    
 or just as single command
 
@@ -99,6 +100,7 @@ run
     xvenv setup
     xvenv pip
     xvenv tools   
+    xvenv req   
     
 or
     xvenv tools -u
