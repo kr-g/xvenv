@@ -177,9 +177,10 @@ open a new bash and run
 
     mkdir thonnygitonic
     cd $_
-    xvenv -V make -q -tool thonny thonny-gitonic
+    xvenv -V make -q -u -tool thonny thonny-gitonic
     
-what will do a `quick` installation and print verbose output
+what will do a `quick` with an upgrade make (just install packackges into the venv) 
+and print verbose output
 
 then run  
 
