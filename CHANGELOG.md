@@ -8,7 +8,9 @@ for open development tasks and limitations.
 
 ## version v0.0.4 - ???
 
--
+- smaller fixes
+- shell executable cmd-line opt added
+- 
 
 
 ## version v0.0.3 - 20220806

@@ -36,6 +36,8 @@ run `xvenv -h` for help
       --version, -v         show program's version number and exit
       --verbose, -V         show more info (default: False)
       -debug, -d            display debug info (default: False)
+      -sh SHELL             shell to use (default: /bin/bash)
+      -sh-opts SHELL_OPTS   shell cmd-line opts (default: -l)
       -python PYTHON, -p PYTHON
                             python interpreter executable (default: python3)
       -ewd EWD, -venv EWD   venv folder (default: .)

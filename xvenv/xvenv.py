@@ -90,6 +90,8 @@ PYTHON = "python3"
 PIP = "pip"
 TEMPRUN = "e_n_v_i.sh"
 
+shell_ = "/bin/bash"
+shell_opts_ = "-l"
 args = None
 debug = False
 verbose = False
@@ -177,7 +179,7 @@ def bashwrap(cmd):
 """
     bin_activate = os.path.join(ewd, f"{VENV}/bin/activate")
 
-    wrap = "#!/bin/bash -l \n"
+    wrap = f"#!{shell_} -l \n"
     if cdvenv:
         wrap += f'cd "{ewd}" \n'
         wrap += errfunc
@@ -203,8 +205,8 @@ def extrun(cmd):
 
     rc = proc(
         [
-            "/bin/bash",
-            "-l",
+            shell_,
+            *shell_opts_.split(),
             fnam,
         ]
     )
@@ -487,7 +489,7 @@ def qtest(args_):
 
 def main_func():
 
-    global args, debug, verbose, python_, tools_, keep_temp, cwd, ewd, cdvenv
+    global args, debug, verbose, python_, tools_, keep_temp, cwd, ewd, cdvenv, shell_, shell_opts_
 
     parser = argparse.ArgumentParser(
         prog="xvenv",
@@ -513,6 +515,19 @@ def main_func():
         action="store_true",
         help="display debug info (default: %(default)s)",
         default=debug,
+    )
+
+    parser.add_argument(
+        "-sh",
+        dest="shell",
+        help="shell to use (default: %(default)s)",
+        default=shell_,
+    )
+    parser.add_argument(
+        "-sh-opts",
+        dest="shell_opts",
+        help="shell cmd-line opts (default: %(default)s)",
+        default=shell_opts_,
     )
 
     parser.add_argument(
@@ -805,6 +820,9 @@ def main_func():
 
     debug = args.debug
     dprint("arguments", args)
+
+    shell_ = args.shell
+    shell_opts_ = args.shell_opts
 
     keep_temp = args.keep_temp
     cwd = args.cwd
