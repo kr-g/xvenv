@@ -133,7 +133,7 @@ the table below shows how single steps and the combined tools (make and binst) a
 ||step|make --quick|make|binst|remark|
 |---|---|---|---|---|---|
 |1|setup|X|X|||
-|2|pip|X|X|||
+|2|pip|X|X|| call make with `-u` to upgrade packages (recommended) |
 |3|tools|X|X|||
 |4|req|X|X|||
 |5|test||X||not executed with make quick or binst|
