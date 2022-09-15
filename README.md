@@ -127,7 +127,7 @@ followed by `pip install -e`.
 
 # single steps vs make and binst
 
-following the matrix showing how single steps and the combined tools (make and binst) are related.
+the table below shows how single steps and the combined tools (make and binst) are related.
 
 
 ||step|make --quick|make|binst|remark|
