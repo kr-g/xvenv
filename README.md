@@ -122,7 +122,7 @@ or just as single command
     xvenv binst
 
 what will call `setup sdist build bdist_wheel` internally,
-followed by `pip install -e`.
+followed by `pip install -e .`
 
 
 # single steps vs make and binst
