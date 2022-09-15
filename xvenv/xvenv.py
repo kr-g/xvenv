@@ -518,7 +518,7 @@ def main_func():
     parser.add_argument(
         "-python",
         "-p",
-        help="display debug info (default: %(default)s)",
+        help="python interpreter executable (default: %(default)s)",
         default=python_,
     )
     parser.add_argument(

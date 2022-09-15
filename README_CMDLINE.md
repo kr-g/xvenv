@@ -37,7 +37,7 @@ run `xvenv -h` for help
       --verbose, -V         show more info (default: False)
       -debug, -d            display debug info (default: False)
       -python PYTHON, -p PYTHON
-                            display debug info (default: python3)
+                            python interpreter executable (default: python3)
       -ewd EWD, -venv EWD   venv folder (default: .)
       -cwd CWD              working folder (default: .)
       -cdvenv               cd into venv before activate (default: False)
