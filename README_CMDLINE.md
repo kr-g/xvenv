@@ -22,7 +22,7 @@ run `xvenv -h` for help
                             bdist_wheel
         install             pip install editabe in venv
         pypi                pypi helper. just prints some helping information for
-                            using with twine
+                            using with pypi and twine
         binst               build and install
         make                sets up a venv and installs everything
         run                 run a command

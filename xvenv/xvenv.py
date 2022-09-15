@@ -662,7 +662,7 @@ def main_func():
 
     pypi_parser = subparsers.add_parser(
         "pypi",
-        help="pypi helper. just prints some helping information for using with twine",
+        help="pypi helper. just prints some helping information for using with pypi and twine",
     )
     pypi_parser.set_defaults(func=pypi)
 
