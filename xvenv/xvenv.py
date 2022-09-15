@@ -179,7 +179,7 @@ def bashwrap(cmd):
 """
     bin_activate = os.path.join(ewd, f"{VENV}/bin/activate")
 
-    wrap = f"#!{shell_} -l \n"
+    wrap = f"#!{shell_} {shell_opts_} \n"
     if cdvenv:
         wrap += f'cd "{ewd}" \n'
         wrap += errfunc
