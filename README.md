@@ -112,7 +112,7 @@ or just as single command
 
 what will create the venv, then install pip, setuptools, twine, black, and flake8 
     
-as soon the build is ready, test with
+as soon the make related steps are done, test with
 
     xvenv build
     xvenv install
