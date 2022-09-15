@@ -179,8 +179,8 @@ open a new bash and run
     cd $_
     xvenv -V make -q -u -tool thonny thonny-gitonic
     
-what will do a `quick` with an upgrade make (just install packackges into the venv) 
-and print verbose output
+what will do a `quick` make (just install packackges into the venv) 
+with an upgrade of the packages and print verbose output
 
 then run  
 
