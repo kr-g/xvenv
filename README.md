@@ -73,9 +73,9 @@ then `cd` into it and
 run 
 
     xvenv setup
-    xvenv pip
-    xvenv tools   # this will install setuptools, twine, wheel, black, flake8 
-    xvenv req     # this will install requirements.txt with pip  
+    xvenv pip -u    # this will upgrade pip 
+    xvenv tools -u  # this will install and upgrade setuptools, twine, wheel, black, flake8 
+    xvenv req       # this will install from requirements.txt with pip  
     xvenv build  
     xvenv install
    
