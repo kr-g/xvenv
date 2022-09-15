@@ -139,7 +139,7 @@ the table below shows how single steps and the combined tools (make and binst) a
 |5|test||X||not executed with make quick or binst|
 |6|build||X|X||
 |7|install||X|X||
-|8|qtest|||| run black and flake8 |
+|8|qtest|||| run `black` and `flake8` |
 
 see also all cmd-line opts here: [`README_CMDLINE`](./README_CMDLINE.md)
 
