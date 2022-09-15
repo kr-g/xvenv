@@ -73,17 +73,16 @@ then `cd` into it and
 run 
 
     xvenv setup
-    xvenv pip -u    # this will upgrade pip 
+    xvenv pip -u    # this will install and upgrade pip 
     xvenv tools -u  # this will install and upgrade setuptools, twine, wheel, black, flake8 
     xvenv req       # this will install from requirements.txt with pip  
+    xvenv test
     xvenv build  
     xvenv install
    
 or just as single command
 
-    xvenv make 
     xvenv make -u 
-        -> to update the tools packages
     
 what will install the sources as `editable` inside the venv.
 
@@ -98,14 +97,10 @@ to have a venv in addition to encapsulate the dependencies.
 run 
 
     xvenv setup
-    xvenv pip
-    xvenv tools   
+    xvenv pip -u 
+    xvenv tools -u  
     xvenv req   
     
-or
-    xvenv tools -u
-        -> to update the tools packages
-
 or just as single command
 
     xvenv make -q -u 
