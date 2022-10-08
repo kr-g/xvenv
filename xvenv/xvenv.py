@@ -518,6 +518,14 @@ def main_func():
     )
 
     parser.add_argument(
+        "-nodot",
+        dest="venv_no_dot",
+        action="store_true",
+        help="use a folder 'venv' instead of '.venv' (default: %(default)s)",
+        default=False,
+    )
+
+    parser.add_argument(
         "-sh",
         dest="shell",
         help="shell to use (default: %(default)s)",
@@ -820,6 +828,11 @@ def main_func():
 
     debug = args.debug
     dprint("arguments", args)
+
+    venv_no_dot = args.venv_no_dot
+    if venv_no_dot:
+        global VENV
+        VENV = VENV.replace(".", "")
 
     shell_ = args.shell
     shell_opts_ = args.shell_opts
