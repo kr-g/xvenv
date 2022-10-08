@@ -10,6 +10,7 @@ for open development tasks and limitations.
 
 - smaller fixes
 - shell executable cmd-line opt added
+- no-dot-args for supporting folder 'venv' instead of '.venv' 
 - 
 
 
