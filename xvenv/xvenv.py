@@ -481,7 +481,7 @@ def qtest(args_):
 
         if args_.unit_test:
             vprint("testing...")
-            rc = extrun(f"{python_} -m unittest {verbose_}")
+            rc = extrun(f"{args_.python} -m unittest {verbose_}")
 
     if not any([args_.format, args_.lint, args_.unit_test]):
         eprint("what? use --help")
