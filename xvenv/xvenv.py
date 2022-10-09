@@ -115,18 +115,6 @@ def eprint(*args_, **kwargs_):
     print(*args_, **kwargs_, file=sys.stderr)
 
 
-#
-# def trprint():
-#     import inspect
-#
-#     cf = inspect.currentframe()
-#     f = cf.f_back
-#     fi = inspect.getframeinfo(f)
-#     ca = inspect.getargvalues(f)
-#     dprint("*TRACE*", fi.function, ca.locals)
-#
-
-
 def trprint(func):
     def _w():
         @wraps(func)
