@@ -8,6 +8,7 @@ for open development tasks and limitations.
 
 ## version v0.0.5 - ???
 
+- sub modules support for entry_points
 - 
 
 

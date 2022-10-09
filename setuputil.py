@@ -96,22 +96,29 @@ def do_main_import(projectname=None):
     return mod
 
 
-def get_scripts(projectname):
+def get_scripts(packages):
     console_scripts = []
     gui_scripts = []
 
-    try:
-        mod = do_main_import(projectname)
-        if "main_func" in dir(mod):
-            console_scripts = [
-                f"{projectname} = {projectname}.__main__:main_func",
-            ]
-        if "gui_func" in dir(mod):
-            gui_scripts = [
-                f"{projectname}-ui = {projectname}.__main__:gui_func",
-            ]
-    except:
-        print("no scripts found", file=sys.stderr)
+    for projectname in packages:
+        try:
+            mod = do_main_import(projectname)
+            scriptname = projectname.replace(".", "_")
+
+            if "main_func" in dir(mod):
+                console_scripts.extend(
+                    [
+                        f"{scriptname} = {projectname}.__main__:main_func",
+                    ]
+                )
+            if "gui_func" in dir(mod):
+                gui_scripts.extend(
+                    [
+                        f"{scriptname}-ui = {projectname}.__main__:gui_func",
+                    ]
+                )
+        except:
+            print("no scripts found", file=sys.stderr)
 
     entry_points = {
         "console_scripts": console_scripts,
@@ -152,9 +159,9 @@ def project_settings(projectname=None, fnam="const.py", version="VERSION"):
 
     install_requires = load_requirements()
 
-    entry_points = get_scripts(projectname)
-
     packages = find_packages()
+
+    entry_points = get_scripts(packages)
 
     rc = {
         "projectname": projectname,
@@ -441,10 +448,8 @@ def bump_requirements(strong=False):
 
 #
 
-## todo remove ???
-def upgrade_requirements_packages():
 
-    raise Exception("deprecated")
+def upgrade_requirements_packages():
 
     proc = subprocess.Popen(
         args=[
@@ -471,6 +476,11 @@ def upgrade_requirements_packages():
 
 
 # use this
+
+
+def upgrade_packages():
+    upgrade_requirements_packages
+    bump_requirements()
 
 
 def create_autodoc():
