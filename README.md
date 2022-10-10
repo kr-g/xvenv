@@ -254,5 +254,6 @@ same topic but with a different scope of functionality.
     
 # license
 
+this software is free for non-commercial use. 
 [`LICENSE`](./LICENSE.md)
 
